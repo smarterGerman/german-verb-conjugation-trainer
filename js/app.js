@@ -197,13 +197,13 @@ class VerbTrainer {
               />
             </div>
 
-            ${exercise.showAnswer && exercise.feedback === 'incorrect' ? `
-              <div class="correct-answer">
-                Correct: <span class="correct-answer-text">
-                  ${exercise.correctAnswers.join(' / ')}
-                </span>
-              </div>
-            ` : ''}
+            ${exercise.showAnswer && (exercise.feedback === 'incorrect' || exercise.feedback === 'shown') ? `
+  <div class="correct-answer">
+    Correct: <span class="correct-answer-text">
+      ${exercise.correctAnswers.join(' / ')}
+    </span>
+  </div>
+` : ''}
 
             <!-- Action buttons -->
             <div class="action-buttons">
