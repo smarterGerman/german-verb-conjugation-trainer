@@ -34,7 +34,8 @@ class VerbTrainer {
       { id: 'strong', name: 'Strong', desc: 'gehen, nehmen, geben...' },
       { id: 'separable', name: 'Separable', desc: 'aufstehen, ankommen...' },
       { id: 'inseparable', name: 'Inseparable', desc: 'verstehen, beginnen...' },
-      { id: 'ieren', name: '-ieren', desc: 'studieren, funktionieren...' }
+      { id: 'ieren', name: '-ieren', desc: 'studieren, funktionieren...' },
+      { id: 'all', name: 'All Verbs', desc: 'A mix of all verb categories' }
     ];
 
     this.tenses = [
