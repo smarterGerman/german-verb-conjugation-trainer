@@ -612,7 +612,8 @@ class VerbTrainer {
       const verbMain = document.getElementById('verb-main');
       if (verbMain) {
         let translationTimeout = null;
-        const showTranslationForOneSecond = () => {
+        // Always update the shortcut to the latest verbMain
+        window.showTranslationForOneSecond = () => {
           if (translationTimeout) {
             clearTimeout(translationTimeout);
             translationTimeout = null;
@@ -633,8 +634,7 @@ class VerbTrainer {
           const input = document.getElementById('verb-input');
           if (input) input.focus();
         };
-        verbMain.addEventListener('click', showTranslationForOneSecond);
-        window.showTranslationForOneSecond = showTranslationForOneSecond;
+        verbMain.addEventListener('click', window.showTranslationForOneSecond);
       }
     }, 0);
 
