@@ -435,8 +435,8 @@ class VerbTrainer {
             <!-- Pronoun & Verb colored boxes -->
             <div class="verb-row">
               <div class="pronoun-box pronoun-${exercise.pronoun}">
-                ${exercise.pronoun === 'sie' && exercise.verb.category === 'essential' && exercise.tense !== 'imperative' ? 'sie •' :
-                  exercise.pronoun === 'Sie' ? 'Sie •' :
+                ${exercise.pronoun === 'Sie' ? 'Sie ••' :
+                  exercise.pronoun === 'sie' && exercise.verb.category === 'essential' && exercise.tense !== 'imperative' ? 'sie •' :
                   exercise.pronoun === 'sie' ? 'sie ••' :
                   exercise.pronoun}
               </div>
