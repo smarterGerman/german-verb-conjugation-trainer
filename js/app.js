@@ -212,8 +212,33 @@ class VerbTrainer {
 
     if (!verb) return null;
 
-    const pronoun = AnswerValidator.getRandomPronoun(exerciseTense);
-    const correctAnswers = verb.conjugations[exerciseTense]?.[pronoun] || [];
+    // Pick a pronoun key (with new sie_sg, sie_pl, Sie logic)
+    let pronoun = AnswerValidator.getRandomPronoun(exerciseTense);
+    let correctAnswers = [];
+    // Map new keys to verb database keys
+    if (pronoun === 'sie_sg') {
+      // Find singular sie (she) answer from 'er' array (which contains er/sie/es)
+      const erArr = verb.conjugations[exerciseTense]?.['er'] || [];
+      correctAnswers = erArr.filter(a => a.startsWith('sie '));
+      // Fallback: if not found, fallback to 'sie' and pick first
+      if (correctAnswers.length === 0) {
+        const sieArr = verb.conjugations[exerciseTense]?.['sie'] || [];
+        if (sieArr) correctAnswers = [sieArr[0]];
+      }
+    } else if (pronoun === 'sie_pl') {
+      // Plural sie (they) from 'sie' array, but not 'Sie'
+      const sieArr = verb.conjugations[exerciseTense]?.['sie'] || [];
+      correctAnswers = sieArr.filter(a => a.startsWith('sie '));
+      // If both sie and Sie are present, pick only those starting with lowercase 'sie'
+      if (correctAnswers.length === 0 && sieArr.length > 0) correctAnswers = [sieArr[0]];
+    } else if (pronoun === 'Sie') {
+      // Formal Sie from 'Sie' array or from 'sie' array entries starting with 'Sie '
+      const sieArr = verb.conjugations[exerciseTense]?.['sie'] || [];
+      const SieArr = verb.conjugations[exerciseTense]?.['Sie'] || [];
+      correctAnswers = SieArr.length > 0 ? SieArr : sieArr.filter(a => a.startsWith('Sie '));
+    } else {
+      correctAnswers = verb.conjugations[exerciseTense]?.[pronoun] || [];
+    }
 
     this.currentExercise = {
       verb,
@@ -419,10 +444,7 @@ class VerbTrainer {
             <div class="header-info">
               ${this.categories.find(c => c.id === this.sessionSettings.category)?.name} • ${tenseName}
             </div>
-            <div class="header-actions">
-              <button id="show-stats" class="stats-btn">📊</button>
-              <button id="end-session" class="stats-btn">⏹️</button>
-            </div>
+            <!-- header-actions removed: stats and stop icons/buttons not needed -->
           </div>
         </div>
 
@@ -435,9 +457,9 @@ class VerbTrainer {
             <!-- Pronoun & Verb colored boxes -->
             <div class="verb-row">
               <div class="pronoun-box pronoun-${exercise.pronoun}">
-                ${exercise.pronoun === 'Sie' ? 'Sie ••' :
-                  exercise.pronoun === 'sie' && exercise.verb.category === 'essential' && exercise.tense !== 'imperative' ? 'sie •' :
-                  exercise.pronoun === 'sie' ? 'sie ••' :
+                ${exercise.pronoun === 'sie_sg' ? 'sie •' :
+                  exercise.pronoun === 'sie_pl' ? 'sie ••' :
+                  exercise.pronoun === 'Sie' ? 'Sie ••' :
                   exercise.pronoun}
               </div>
               <div class="verb-box verbcat-${exercise.verb.category}" id="verb-main" title="Show/hide translation">
