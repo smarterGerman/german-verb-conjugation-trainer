@@ -594,7 +594,15 @@ class VerbTrainer {
     this.boundHandleChange = this.handleChange.bind(this);
 
     // Add new listeners
-    app.addEventListener('click', this.boundHandleClick);
+    app.addEventListener('click', (e) => {
+      this.boundHandleClick(e);
+      // After any button click inside the app, focus the input (if present)
+      // Only focus if the click was on a button inside the app container
+      if (e.target.closest('button')) {
+        const input = document.getElementById('verb-input');
+        if (input) setTimeout(() => input.focus(), 0);
+      }
+    });
     app.addEventListener('keydown', this.boundHandleKeydown);
     app.addEventListener('input', this.boundHandleInput);
     app.addEventListener('change', this.boundHandleChange);
@@ -617,7 +625,13 @@ class VerbTrainer {
             verbMain.textContent = original;
             verbMain.classList.remove('showing-translation');
             translationTimeout = null;
+            // Focus input after translation
+            const input = document.getElementById('verb-input');
+            if (input) input.focus();
           }, 1000);
+          // Also focus input immediately after click
+          const input = document.getElementById('verb-input');
+          if (input) input.focus();
         };
         verbMain.addEventListener('click', showTranslationForOneSecond);
         window.showTranslationForOneSecond = showTranslationForOneSecond;
