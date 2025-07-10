@@ -438,7 +438,7 @@ class VerbTrainer {
 
             <!-- Verb presentation -->
             <div class="verb-display ${exercise.showAnswer ? exercise.feedback : ''}">
-              <div class="verb-main" id="verb-main" style="cursor:pointer;" title="Show translation">
+              <div class="verb-main" id="verb-main" style="cursor:pointer;" title="Show/hide translation">
                 ${exercise.infinitive}
                 <span class="verb-english" id="verb-english" style="display:none;">${exercise.english}</span>
               </div>
@@ -578,14 +578,29 @@ class VerbTrainer {
     app.addEventListener('input', this.boundHandleInput);
     app.addEventListener('change', this.boundHandleChange);
 
-    // Add listener for showing translation on verb click
+    // Add listener for showing/hiding translation on verb click and shortcut
     setTimeout(() => {
       const verbMain = document.getElementById('verb-main');
       const verbEnglish = document.getElementById('verb-english');
       if (verbMain && verbEnglish) {
-        verbMain.addEventListener('click', () => {
-          verbEnglish.style.display = verbEnglish.style.display === 'none' ? 'inline' : 'none';
-        });
+        // Track translation state
+        let translationVisible = false;
+        const showTranslation = () => {
+          verbEnglish.style.display = 'inline';
+          translationVisible = true;
+        };
+        const hideTranslation = () => {
+          verbEnglish.style.display = 'none';
+          translationVisible = false;
+        };
+        const toggleTranslation = () => {
+          translationVisible ? hideTranslation() : showTranslation();
+        };
+        verbMain.addEventListener('click', toggleTranslation);
+        // Shortcut: Shift+Cmd/Ctrl+#
+        window.toggleTranslationShortcut = toggleTranslation;
+        // Set initial state
+        hideTranslation();
       }
     }, 0);
 
@@ -609,7 +624,12 @@ class VerbTrainer {
             return;
           }
         }
-        
+        // Shift+Cmd/Ctrl+# for translation
+        if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === '#' || e.key === '3')) {
+          e.preventDefault();
+          e.stopPropagation();
+          if (window.toggleTranslationShortcut) window.toggleTranslationShortcut();
+        }
         // Shift+Cmd/Ctrl+Enter OR Tab for next verb
         if (this.currentExercise.showAnswer && (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab')) {
           e.preventDefault();
