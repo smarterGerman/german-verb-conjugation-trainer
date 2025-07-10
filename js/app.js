@@ -265,6 +265,37 @@ class VerbTrainer {
     app.addEventListener('keydown', this.boundHandleKeydown);
     app.addEventListener('input', this.boundHandleInput);
     app.addEventListener('change', this.boundHandleChange);
+  
+  // Add document-level keyboard listener for shortcuts
+  if (this.documentKeyListener) {
+    document.removeEventListener('keydown', this.documentKeyListener);
+  }
+
+  this.documentKeyListener = (e) => {
+    if (this.currentMode === 'practice' && this.currentExercise && this.currentExercise.showAnswer) {
+      console.log('Document key:', {
+        key: e.key,
+        metaKey: e.metaKey,
+        ctrlKey: e.ctrlKey,
+        shiftKey: e.shiftKey
+      });
+      
+      // Shift+Cmd/Ctrl+Enter OR just Tab
+      if (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab') {
+        console.log('Shortcut detected at document level!');
+        e.preventDefault();
+        e.stopPropagation();
+        
+        this.generateNewExercise();
+        this.render();
+        this.attachEventListeners();
+        setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
+      }
+    }
+  };
+
+  document.addEventListener('keydown', this.documentKeyListener);
+  console.log('Document keyboard listener added');  
   }
 
   handleChange(e) {
