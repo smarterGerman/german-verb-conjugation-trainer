@@ -444,7 +444,6 @@ class VerbTrainer {
             <div class="header-info">
               ${this.categories.find(c => c.id === this.sessionSettings.category)?.name} • ${tenseName}
             </div>
-            <!-- header-actions removed: stats and stop icons/buttons not needed -->
           </div>
         </div>
 
@@ -462,9 +461,8 @@ class VerbTrainer {
                   exercise.pronoun === 'Sie' ? 'Sie ••' :
                   exercise.pronoun}
               </div>
-              <div class="verb-box verbcat-${exercise.verb.category}" id="verb-main" title="Show/hide translation">
+              <div class="verb-box verbcat-${exercise.verb.category}" id="verb-main" data-german="${exercise.infinitive}" data-english="${exercise.english}" title="Show translation for 1s">
                 ${exercise.infinitive}
-                <span class="verb-english" id="verb-english" style="display:none;">${exercise.english}</span>
               </div>
             </div>
 
@@ -599,75 +597,54 @@ class VerbTrainer {
     app.addEventListener('input', this.boundHandleInput);
     app.addEventListener('change', this.boundHandleChange);
 
-    // Add listener for showing/hiding translation on verb click and shortcut
+    // Add listener for showing translation for 1s on verb click and shortcut
     setTimeout(() => {
       const verbMain = document.getElementById('verb-main');
-      const verbEnglish = document.getElementById('verb-english');
-      if (verbMain && verbEnglish) {
-        // Use a persistent state on window
-        window.translationVisible = window.translationVisible || false;
-        const showTranslation = () => {
-          verbEnglish.style.display = 'inline';
-          window.translationVisible = true;
+      if (verbMain) {
+        let translationTimeout = null;
+        const showTranslationForOneSecond = () => {
+          if (translationTimeout) {
+            clearTimeout(translationTimeout);
+            translationTimeout = null;
+          }
+          const original = verbMain.getAttribute('data-german');
+          const english = verbMain.getAttribute('data-english');
+          verbMain.textContent = english;
+          verbMain.classList.add('showing-translation');
+          translationTimeout = setTimeout(() => {
+            verbMain.textContent = original;
+            verbMain.classList.remove('showing-translation');
+            translationTimeout = null;
+          }, 1000);
         };
-        const hideTranslation = () => {
-          verbEnglish.style.display = 'none';
-          window.translationVisible = false;
-        };
-        const toggleTranslation = () => {
-          window.translationVisible ? hideTranslation() : showTranslation();
-        };
-        verbMain.addEventListener('click', toggleTranslation);
-        window.toggleTranslationShortcut = toggleTranslation;
-        // Set initial state based on window.translationVisible
-        if (window.translationVisible) {
-          showTranslation();
-        } else {
-          hideTranslation();
-        }
+        verbMain.addEventListener('click', showTranslationForOneSecond);
+        window.showTranslationForOneSecond = showTranslationForOneSecond;
       }
     }, 0);
 
-    // Add document-level keyboard listener for shortcuts
+    // Remove document-level keyboard listener for stats/stop icons (no longer needed)
     if (this.documentKeyListener) {
       document.removeEventListener('keydown', this.documentKeyListener);
     }
 
     this.documentKeyListener = (e) => {
       if (this.currentMode === 'practice' && this.currentExercise && !this.sessionEnded) {
-        // Shift+Cmd/Ctrl+I for showing answer
-        if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
-          if (!this.currentExercise.showAnswer) {
-            e.preventDefault();
-            e.stopPropagation();
-            
-            this.currentExercise.showAnswer = true;
-            this.currentExercise.feedback = 'shown';
-            this.render();
-            this.attachEventListeners();
-            return;
-          }
-        }
-        // Shift+Cmd/Ctrl+# for translation
+        // Shift+Cmd/Ctrl+# for translation (or 3)
         if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === '#' || e.key === '3')) {
           e.preventDefault();
           e.stopPropagation();
-          if (window.toggleTranslationShortcut) {
-            window.toggleTranslationShortcut();
-            // Keep translation state persistent across renders
-            window.translationVisible = document.getElementById('verb-english')?.style.display === 'inline';
+          if (window.showTranslationForOneSecond) {
+            window.showTranslationForOneSecond();
           }
         }
         // Shift+Cmd/Ctrl+Enter OR Tab for next verb
         if (this.currentExercise.showAnswer && (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab')) {
           e.preventDefault();
           e.stopPropagation();
-          
           this.goToNextVerb();
         }
       }
     };
-
     document.addEventListener('keydown', this.documentKeyListener);
   }
 
@@ -831,17 +808,7 @@ class VerbTrainer {
       return;
     }
 
-    // Show stats
-    if (target.id === 'show-stats') {
-      const stats = this.verbSelector.getSessionStats();
-      const sessionTime = this.sessionStartTime ? Math.round((Date.now() - this.sessionStartTime) / 60000) : 0;
-      alert(`Current Session:
-Verbs Practiced: ${this.questionsAnswered}
-Correct: ${this.correctAnswers}
-Accuracy: ${this.questionsAnswered > 0 ? ((this.correctAnswers / this.questionsAnswered) * 100).toFixed(1) : 0}%
-Session Time: ${sessionTime} min`);
-      return;
-    }
+    // Show stats button removed
   }
 
   handleKeydown(e) {
