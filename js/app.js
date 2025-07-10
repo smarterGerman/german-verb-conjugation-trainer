@@ -282,7 +282,7 @@ class VerbTrainer {
     });
     
     // Shift+Ctrl+I for showing answer (when answer is NOT shown)
-    if (e.ctrlKey && e.shiftKey && e.key === 'I' && !this.currentExercise.showAnswer) {
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === 'I' || e.key === 'i') && !this.currentExercise.showAnswer) {
       console.log('Show answer shortcut detected!');
       e.preventDefault();
       e.stopPropagation();
@@ -356,6 +356,7 @@ class VerbTrainer {
 
     // Show answer
     if (target.id === 'show-answer') {
+        console.log('Answer button clicked!'); // Debug log
       this.currentExercise.showAnswer = true;
       this.currentExercise.feedback = 'shown';
       this.render();
