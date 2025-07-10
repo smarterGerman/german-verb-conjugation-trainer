@@ -456,3 +456,16 @@ body {
         display: none;
     }
 }
+.pronoun-plural::after {
+    content: "●●";
+    font-size: 0.7em;
+    color: #3b82f6;
+    margin-left: 0.3em;
+}
+
+.pronoun-formal::after {
+    content: "●";
+    font-size: 0.7em; 
+    color: #3b82f6;
+    margin-left: 0.3em;
+}
