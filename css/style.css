@@ -469,3 +469,64 @@ body {
     color: #3b82f6;
     margin-left: 0.3em;
 }
+/* Dropdown interface styles - add this to your css/style.css */
+
+.dropdown-row {
+  display: flex;
+  gap: 1.5rem;
+  align-items: flex-end;
+}
+
+.dropdown-group {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.dropdown-label {
+  font-size: 1.125rem;
+  font-weight: 500;
+  color: #1f2937;
+  margin-bottom: 0.75rem;
+}
+
+.dropdown-select {
+  width: 100%;
+  padding: 1rem;
+  font-size: 0.875rem;
+  border: 2px solid #d1d5db;
+  border-radius: 0.75rem;
+  background: white;
+  color: #374151;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  appearance: none;
+  background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6,9 12,15 18,9'%3e%3c/polyline%3e%3c/svg%3e");
+  background-repeat: no-repeat;
+  background-position: right 1rem center;
+  background-size: 1rem;
+  padding-right: 3rem;
+}
+
+.dropdown-select:hover {
+  border-color: #9ca3af;
+}
+
+.dropdown-select:focus {
+  outline: none;
+  border-color: #3b82f6;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+/* Responsive design for dropdowns */
+@media (max-width: 768px) {
+  .dropdown-row {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .dropdown-select {
+    font-size: 1rem;
+  }
+}

@@ -1,4 +1,4 @@
-// js/app.js - Updated to use custom CSS classes
+// js/app.js - Updated to use dropdown menus
 import { VerbSelector } from './verbSelector.js';
 import { AnswerValidator } from './answerValidator.js';
 
@@ -91,32 +91,28 @@ class VerbTrainer {
           </div>
 
           <div class="setup-section">
-            <h3 class="section-title">Verb Category</h3>
-            <div class="category-grid" id="category-selection">
-              ${this.categories.map(category => `
-                <button
-                  data-category="${category.id}"
-                  class="category-btn ${this.sessionSettings.category === category.id ? 'selected' : ''}"
-                >
-                  <div class="btn-title">${category.name}</div>
-                  <div class="btn-desc">${category.desc}</div>
-                </button>
-              `).join('')}
-            </div>
-          </div>
+            <div class="dropdown-row">
+              <div class="dropdown-group">
+                <label class="dropdown-label">Verb Category</label>
+                <select id="category-select" class="dropdown-select">
+                  ${this.categories.map(category => `
+                    <option value="${category.id}" ${this.sessionSettings.category === category.id ? 'selected' : ''}>
+                      ${category.name} - ${category.desc}
+                    </option>
+                  `).join('')}
+                </select>
+              </div>
 
-          <div class="setup-section">
-            <h3 class="section-title">Tense/Mood</h3>
-            <div class="tense-grid" id="tense-selection">
-              ${this.tenses.map(tense => `
-                <button
-                  data-tense="${tense.id}"
-                  class="tense-btn ${this.sessionSettings.tense === tense.id ? 'selected' : ''}"
-                >
-                  <div class="btn-title">${tense.name}</div>
-                  <div class="btn-desc">${tense.desc}</div>
-                </button>
-              `).join('')}
+              <div class="dropdown-group">
+                <label class="dropdown-label">Tense/Mood</label>
+                <select id="tense-select" class="dropdown-select">
+                  ${this.tenses.map(tense => `
+                    <option value="${tense.id}" ${this.sessionSettings.tense === tense.id ? 'selected' : ''}>
+                      ${tense.name} - ${tense.desc}
+                    </option>
+                  `).join('')}
+                </select>
+              </div>
             </div>
           </div>
 
@@ -252,36 +248,36 @@ class VerbTrainer {
     if (this.boundHandleInput) {
       app.removeEventListener('input', this.boundHandleInput);
     }
+    if (this.boundHandleChange) {
+      app.removeEventListener('change', this.boundHandleChange);
+    }
 
     // Bind functions to preserve 'this' context
     this.boundHandleClick = this.handleClick.bind(this);
     this.boundHandleKeydown = this.handleKeydown.bind(this);
     this.boundHandleInput = this.handleInput.bind(this);
+    this.boundHandleChange = this.handleChange.bind(this);
 
     // Add new listeners
     app.addEventListener('click', this.boundHandleClick);
     app.addEventListener('keydown', this.boundHandleKeydown);
     app.addEventListener('input', this.boundHandleInput);
+    app.addEventListener('change', this.boundHandleChange);
+  }
+
+  handleChange(e) {
+    // Handle dropdown changes
+    if (e.target.id === 'category-select') {
+      this.sessionSettings.category = e.target.value;
+    }
+    
+    if (e.target.id === 'tense-select') {
+      this.sessionSettings.tense = e.target.value;
+    }
   }
 
   handleClick(e) {
     const target = e.target;
-
-    // Category selection
-    if (target.classList.contains('category-btn') || target.closest('.category-btn')) {
-      const btn = target.closest('.category-btn') || target;
-      this.sessionSettings.category = btn.dataset.category;
-      this.render();
-      this.attachEventListeners();
-    }
-
-    // Tense selection
-    if (target.classList.contains('tense-btn') || target.closest('.tense-btn')) {
-      const btn = target.closest('.tense-btn') || target;
-      this.sessionSettings.tense = btn.dataset.tense;
-      this.render();
-      this.attachEventListeners();
-    }
 
     // Start practice
     if (target.id === 'start-practice') {
