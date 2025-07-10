@@ -574,3 +574,55 @@ body {
     font-size: 1rem;
   }
 }
+/* Progress dots */
+.progress-indicator {
+  display: flex;
+  justify-content: center;
+  gap: 0.25rem;
+  margin-bottom: 2rem;
+}
+
+.progress-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background-color: #e5e7eb;
+  transition: background-color 0.3s ease;
+}
+
+.progress-dot.completed {
+  background-color: #3b82f6;
+}
+
+/* Verb feedback coloring */
+.verb-display.correct .verb-main {
+  color: #059669;
+  transition: color 0.3s ease;
+}
+
+.verb-display.incorrect .verb-main {
+  color: #dc2626;
+  transition: color 0.3s ease;
+}
+
+.verb-display.correct .verb-pronoun {
+  color: #059669;
+  transition: color 0.3s ease;
+}
+
+.verb-display.incorrect .verb-pronoun {
+  color: #dc2626;
+  transition: color 0.3s ease;
+}
+
+/* Correct answer text styling */
+.correct-answer {
+  text-align: center;
+  margin: 1rem 0;
+  color: #374151;
+}
+
+.correct-answer-text {
+  font-weight: 500;
+  color: #1f2937;
+}

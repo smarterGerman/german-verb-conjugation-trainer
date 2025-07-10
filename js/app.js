@@ -1,4 +1,4 @@
-// js/app.js - Updated to use dropdown menus
+// js/app.js - Updated with progress dots and verb coloring
 import { VerbSelector } from './verbSelector.js';
 import { AnswerValidator } from './answerValidator.js';
 
@@ -11,6 +11,8 @@ class VerbTrainer {
       category: 'essential',
       tense: 'present'
     };
+    this.sessionStartTime = null;
+    this.questionsAnswered = 0;
     
     this.categories = [
       { id: 'essential', name: 'Essential', desc: 'sein, haben, werden...' },
@@ -77,8 +79,22 @@ class VerbTrainer {
 
     this.currentExercise.feedback = result.isCorrect ? 'correct' : 'incorrect';
     this.currentExercise.showAnswer = true;
+    this.questionsAnswered++;
 
     return result;
+  }
+
+  renderProgressDots() {
+    const totalQuestions = 20;
+    const completed = this.questionsAnswered;
+    
+    let dots = '';
+    for (let i = 0; i < totalQuestions; i++) {
+      const dotClass = i < completed ? 'progress-dot completed' : 'progress-dot';
+      dots += `<div class="${dotClass}"></div>`;
+    }
+    
+    return `<div class="progress-indicator">${dots}</div>`;
   }
 
   renderSetupScreen() {
@@ -152,13 +168,10 @@ class VerbTrainer {
         <div class="practice-main">
           <div class="practice-card">
             <!-- Progress indicator -->
-            <div class="progress-info">
-              <span>Question 1 of 20</span>
-              <span>Session: 15 min</span>
-            </div>
+            ${this.renderProgressDots()}
 
             <!-- Verb presentation -->
-            <div class="verb-display">
+            <div class="verb-display ${exercise.showAnswer ? exercise.feedback : ''}">
               <div class="verb-main">
                 ${exercise.infinitive} <span class="verb-english">${exercise.english}</span>
               </div>
@@ -179,19 +192,11 @@ class VerbTrainer {
               />
             </div>
 
-            <!-- Feedback -->
-            ${exercise.showAnswer ? `
-              <div class="feedback ${exercise.feedback}">
-                ${exercise.feedback === 'correct' ? `
-                  ✓ Correct!
-                ` : `
-                  <div>✗ Incorrect</div>
-                  <div class="correct-answer">
-                    Correct: <span class="correct-answer-text">
-                      ${exercise.correctAnswers.join(' / ')}
-                    </span>
-                  </div>
-                `}
+            ${exercise.showAnswer && exercise.feedback === 'incorrect' ? `
+              <div class="correct-answer">
+                Correct: <span class="correct-answer-text">
+                  ${exercise.correctAnswers.join(' / ')}
+                </span>
               </div>
             ` : ''}
 
@@ -274,6 +279,8 @@ class VerbTrainer {
     // Start practice
     if (target.id === 'start-practice') {
       this.currentMode = 'practice';
+      this.sessionStartTime = Date.now();
+      this.questionsAnswered = 0;
       this.generateNewExercise();
       this.render();
       this.attachEventListeners();
@@ -316,11 +323,13 @@ class VerbTrainer {
     // Show stats
     if (target.id === 'show-stats') {
       const stats = this.verbSelector.getSessionStats();
+      const sessionTime = this.sessionStartTime ? Math.round((Date.now() - this.sessionStartTime) / 60000) : 0;
       alert(`Session Stats:
 Total Attempts: ${stats.totalAttempts}
 Correct: ${stats.totalCorrect}
 Accuracy: ${(stats.averageAccuracy * 100).toFixed(1)}%
-Verbs Practiced: ${stats.verbsPracticed}`);
+Verbs Practiced: ${stats.verbsPracticed}
+Session Time: ${sessionTime} min`);
     }
   }
 
