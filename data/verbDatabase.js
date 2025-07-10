@@ -158,7 +158,7 @@ export const verbDatabase = {
         subjunctive1: { ich: ["ich führe"], du: ["du führest"], er: ["er führe", "sie führe", "es führe"], wir: ["wir führen"], ihr: ["ihr führet"], sie: ["sie führen", "Sie führen"] },
         subjunctive2: { ich: ["ich führte"], du: ["du führtest"], er: ["er führte", "sie führte", "es führte"], wir: ["wir führten"], ihr: ["ihr führtet"], sie: ["sie führten", "Sie führten"] }
       }
-    }
+    },
     {
   infinitive: "leben", english: "to live", frequency: 34, category: "regular", auxiliary: "haben",
   conjugations: {
@@ -272,7 +272,7 @@ export const verbDatabase = {
         subjunctive1: { ich: ["ich sehe"], du: ["du sehest"], er: ["er sehe", "sie sehe", "es sehe"], wir: ["wir sehen"], ihr: ["ihr sehet"], sie: ["sie sehen", "Sie sehen"] },
         subjunctive2: { ich: ["ich sähe"], du: ["du sähest"], er: ["er sähe", "sie sähe", "es sähe"], wir: ["wir sähen"], ihr: ["ihr sähet"], sie: ["sie sähen", "Sie sähen"] }
       }
-    }
+    },
     {
   infinitive: "lassen", english: "to let, to leave", frequency: 15, category: "strong", auxiliary: "haben",
   conjugations: {
@@ -353,7 +353,7 @@ export const verbDatabase = {
         subjunctive1: { ich: ["ich komme an"], du: ["du kommest an"], er: ["er komme an", "sie komme an", "es komme an"], wir: ["wir kommen an"], ihr: ["ihr kommet an"], sie: ["sie kommen an", "Sie kommen an"] },
         subjunctive2: { ich: ["ich käme an"], du: ["du kämest an"], er: ["er käme an", "sie käme an", "es käme an"], wir: ["wir kämen an"], ihr: ["ihr kämet an"], sie: ["sie kämen an", "Sie kämen an"] }
       }
-    }
+    },
     {
   infinitive: "ausgehen", english: "to go out", frequency: 45, category: "separable", auxiliary: "sein",
   conjugations: {
@@ -412,7 +412,7 @@ export const verbDatabase = {
         subjunctive1: { ich: ["ich bekomme"], du: ["du bekommest"], er: ["er bekomme", "sie bekomme", "es bekomme"], wir: ["wir bekommen"], ihr: ["ihr bekommet"], sie: ["sie bekommen", "Sie bekommen"] },
         subjunctive2: { ich: ["ich bekäme"], du: ["du bekämest"], er: ["er bekäme", "sie bekäme", "es bekäme"], wir: ["wir bekämen"], ihr: ["ihr bekämet"], sie: ["sie bekämen", "Sie bekämen"] }
       }
-    }
+    },
     {
   infinitive: "beginnen", english: "to begin", frequency: 49, category: "inseparable", auxiliary: "haben",
   conjugations: {
@@ -482,7 +482,7 @@ export const verbDatabase = {
         subjunctive1: { ich: ["ich passiere"], du: ["du passierest"], er: ["er passiere", "sie passiere", "es passiere"], wir: ["wir passieren"], ihr: ["ihr passieret"], sie: ["sie passieren", "Sie passieren"] },
         subjunctive2: { ich: ["ich passierte"], du: ["du passiertest"], er: ["er passierte", "sie passierte", "es passierte"], wir: ["wir passierten"], ihr: ["ihr passiertet"], sie: ["sie passierten", "Sie passierten"] }
       }
-    }
+    },
     {
   infinitive: "interessieren", english: "to interest", frequency: 75, category: "ieren", auxiliary: "haben",
   conjugations: {
@@ -524,7 +524,7 @@ export const verbsByFrequency = [
   { infinitive: "bekommen", frequency: 47, category: "inseparable" },
   { infinitive: "studieren", frequency: 65, category: "ieren" },
   { infinitive: "funktionieren", frequency: 70, category: "ieren" },
-  { infinitive: "passieren", frequency: 80, category: "ieren" }
+  { infinitive: "passieren", frequency: 80, category: "ieren" },
   { infinitive: "lassen", frequency: 15, category: "strong" },
 { infinitive: "stehen", frequency: 16, category: "strong" },
 { infinitive: "finden", frequency: 17, category: "strong" },

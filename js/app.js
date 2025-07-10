@@ -371,12 +371,16 @@ Verbs Practiced: ${stats.verbsPracticed}`);
 
   handleKeypress(e) {
   if (e.key === 'Enter' && this.currentMode === 'practice') {
+    e.preventDefault(); // Prevent form submission
+    
     if (!this.currentExercise.showAnswer) {
       // Enter submits the answer
       const input = document.getElementById('verb-input');
-      this.checkAnswer(input.value);
-      this.render();
-      this.attachEventListeners();
+      if (input && input.value.trim()) {
+        this.checkAnswer(input.value);
+        this.render();
+        this.attachEventListeners();
+      }
     } else {
       // Enter goes to next verb when answer is shown
       this.generateNewExercise();
