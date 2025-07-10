@@ -196,16 +196,24 @@ class VerbTrainer {
 
   generateNewExercise() {
     if (this.sessionEnded) return null;
-    
+
+    // Determine tense for this exercise
+    let exerciseTense = this.sessionSettings.tense;
+    if (exerciseTense === 'mix') {
+      // Pick a random tense from available tenses (excluding 'mix')
+      const tenses = this.tenses.filter(t => t.id !== 'mix').map(t => t.id);
+      exerciseTense = tenses[Math.floor(Math.random() * tenses.length)];
+    }
+
     const verb = this.verbSelector.selectNextVerb(
-      this.sessionSettings.category, 
-      this.sessionSettings.tense
+      this.sessionSettings.category,
+      exerciseTense
     );
-    
+
     if (!verb) return null;
 
-    const pronoun = AnswerValidator.getRandomPronoun(this.sessionSettings.tense);
-    const correctAnswers = verb.conjugations[this.sessionSettings.tense]?.[pronoun] || [];
+    const pronoun = AnswerValidator.getRandomPronoun(exerciseTense);
+    const correctAnswers = verb.conjugations[exerciseTense]?.[pronoun] || [];
 
     this.currentExercise = {
       verb,
@@ -213,6 +221,7 @@ class VerbTrainer {
       correctAnswers,
       infinitive: verb.infinitive,
       english: verb.english,
+      tense: exerciseTense,
       showAnswer: false,
       feedback: '',
       userInput: ''
@@ -259,7 +268,6 @@ class VerbTrainer {
       return `
         <div class="progress-indicator">
           ${dots}
-          <div class="progress-text">${progress.current}/${progress.total} verbs</div>
         </div>
       `;
     } else {
@@ -399,6 +407,8 @@ class VerbTrainer {
     const exercise = this.currentExercise;
     if (!exercise) return '';
 
+    // Find the tense name for the current exercise
+    const tenseName = this.tenses.find(t => t.id === exercise.tense)?.name || exercise.tense;
     return `
       <div class="practice-container">
         <!-- Header -->
@@ -410,7 +420,7 @@ class VerbTrainer {
             
             <div class="header-info">
               ${this.categories.find(c => c.id === this.sessionSettings.category)?.name} • 
-              ${this.tenses.find(t => t.id === this.sessionSettings.tense)?.name}
+              ${tenseName}
             </div>
 
             <div class="header-actions">
@@ -448,7 +458,7 @@ class VerbTrainer {
               />
             </div>
 
-            ${exercise.showAnswer && (exercise.feedback === 'incorrect' || exercise.feedback === 'shown') ? `
+            ${exercise.showAnswer ? `
               <div class="correct-answer">
                 Correct: <span class="correct-answer-text">
                   ${exercise.correctAnswers.join(' / ')}
