@@ -347,14 +347,28 @@ Session Time: ${sessionTime} min`);
 
   handleKeydown(e) {
   if (this.currentMode === 'practice') {
+    console.log('Key pressed:', {
+      key: e.key,
+      metaKey: e.metaKey,
+      ctrlKey: e.ctrlKey,
+      shiftKey: e.shiftKey,
+      showAnswer: this.currentExercise?.showAnswer
+    });
+    
     // SHIFT + CMD/CTRL + ENTER for next verb (when answer is shown)
     if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') {
+      console.log('Shortcut detected!');
       e.preventDefault();
+      e.stopPropagation();
+      
       if (this.currentExercise && this.currentExercise.showAnswer) {
+        console.log('Moving to next verb via shortcut');
         this.generateNewExercise();
         this.render();
         this.attachEventListeners();
         setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
+      } else {
+        console.log('Cannot use shortcut - answer not shown yet');
       }
       return;
     }
@@ -364,7 +378,7 @@ Session Time: ${sessionTime} min`);
       e.preventDefault();
       
       if (!this.currentExercise.showAnswer) {
-        // Enter submits the answer
+        console.log('Enter pressed - checking answer');
         const input = document.getElementById('verb-input');
         if (input && input.value.trim()) {
           this.checkAnswer(input.value);
