@@ -272,27 +272,41 @@ class VerbTrainer {
   }
 
   this.documentKeyListener = (e) => {
-    if (this.currentMode === 'practice' && this.currentExercise && this.currentExercise.showAnswer) {
-      console.log('Document key:', {
-        key: e.key,
-        metaKey: e.metaKey,
-        ctrlKey: e.ctrlKey,
-        shiftKey: e.shiftKey
-      });
+  if (this.currentMode === 'practice' && this.currentExercise) {
+    console.log('Document key:', {
+      key: e.key,
+      metaKey: e.metaKey,
+      ctrlKey: e.ctrlKey,
+      shiftKey: e.shiftKey,
+      showAnswer: this.currentExercise.showAnswer
+    });
+    
+    // Shift+Ctrl+I for showing answer (when answer is NOT shown)
+    if (e.ctrlKey && e.shiftKey && e.key === 'I' && !this.currentExercise.showAnswer) {
+      console.log('Show answer shortcut detected!');
+      e.preventDefault();
+      e.stopPropagation();
       
-      // Shift+Cmd/Ctrl+Enter OR just Tab
-      if (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab') {
-        console.log('Shortcut detected at document level!');
-        e.preventDefault();
-        e.stopPropagation();
-        
-        this.generateNewExercise();
-        this.render();
-        this.attachEventListeners();
-        setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
-      }
+      this.currentExercise.showAnswer = true;
+      this.currentExercise.feedback = 'shown';
+      this.render();
+      this.attachEventListeners();
+      return;
     }
-  };
+    
+    // Shift+Cmd/Ctrl+Enter OR Tab for next verb (when answer IS shown)
+    if (this.currentExercise.showAnswer && (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab')) {
+      console.log('Next verb shortcut detected!');
+      e.preventDefault();
+      e.stopPropagation();
+      
+      this.generateNewExercise();
+      this.render();
+      this.attachEventListeners();
+      setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
+    }
+  }
+};
 
   document.addEventListener('keydown', this.documentKeyListener);
   console.log('Document keyboard listener added');  
