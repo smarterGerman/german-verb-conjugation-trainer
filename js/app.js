@@ -13,14 +13,14 @@ class VerbTrainer {
     };
     
     this.categories = [
-      { id: 'essential', name: 'Essential', desc: 'sein, haben, werden...' },
-      { id: 'modal', name: 'Modal', desc: 'knnen, mssen, wollen...' },
-      { id: 'regular', name: 'Regular', desc: 'machen, sagen, lernen...' },
-      { id: 'strong', name: 'Strong', desc: 'gehen, nehmen, geben...' },
-      { id: 'separable', name: 'Separable', desc: 'aufstehen, ankommen...' },
-      { id: 'inseparable', name: 'Inseparable', desc: 'verstehen, beginnen...' },
-      { id: 'ieren', name: '-ieren', desc: 'studieren, funktionieren...' }
-    ];
+  { id: 'essential', name: 'Essential', desc: 'sein, haben, werden...' },
+  { id: 'modal', name: 'Modal', desc: 'können, müssen, wollen...' },
+  { id: 'regular', name: 'Regular', desc: 'machen, sagen, lernen...' },
+  { id: 'strong', name: 'Strong', desc: 'gehen, nehmen, geben...' },
+  { id: 'separable', name: 'Separable', desc: 'aufstehen, ankommen...' },
+  { id: 'inseparable', name: 'Inseparable', desc: 'verstehen, beginnen...' },
+  { id: 'ieren', name: '-ieren', desc: 'studieren, funktionieren...' }
+];
 
     this.tenses = [
       { id: 'present', name: 'Prsens', desc: 'Present tense' },
