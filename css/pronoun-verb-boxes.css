@@ -1,0 +1,91 @@
+/* Pronoun boxes: six distinct colors for each person */
+.pronoun-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  min-width: 120px;
+  height: 64px;
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  margin: 0 1%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  color: #fff;
+  letter-spacing: 1px;
+}
+.pronoun-ich    { background: #3b82f6; }
+.pronoun-du     { background: #f59e42; }
+.pronoun-er     { background: #e11d48; }
+.pronoun-sie    { background: #8b5cf6; }
+.pronoun-es     { background: #10b981; }
+.pronoun-wir    { background: #6366f1; }
+.pronoun-ihr    { background: #f43f5e; }
+.pronoun-Sie    { background: #0ea5e9; }
+
+/* Verb boxes: distinct colors per category, visually different from pronoun colors */
+.verb-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48%;
+  min-width: 120px;
+  height: 64px;
+  font-size: 2rem;
+  font-weight: 600;
+  border-radius: 12px;
+  margin: 0 1%;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+  color: #fff;
+  letter-spacing: 1px;
+  cursor: pointer;
+  position: relative;
+}
+.verbcat-essential    { background: #2563eb; }
+.verbcat-modal        { background: #d97706; }
+.verbcat-regular      { background: #059669; }
+.verbcat-strong       { background: #be185d; }
+.verbcat-separable    { background: #db2777; }
+.verbcat-inseparable  { background: #7c3aed; }
+.verbcat-ieren        { background: #ea580c; }
+.verbcat-all          { background: #64748b; }
+
+/* Row container for boxes */
+.verb-row {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  margin: 24px 0 16px 0;
+}
+
+/* Responsive for mobile */
+@media (max-width: 600px) {
+  .verb-row {
+    flex-direction: column;
+    gap: 12px;
+  }
+  .pronoun-box, .verb-box {
+    width: 100%;
+    min-width: 0;
+    margin: 0;
+    height: 56px;
+    font-size: 1.5rem;
+  }
+}
+
+/* English translation styling inside verb box */
+.verb-english {
+  font-size: 1rem;
+  font-weight: 400;
+  color: #fff;
+  opacity: 0.85;
+  margin-left: 8px;
+  position: absolute;
+  bottom: 8px;
+  right: 12px;
+  background: rgba(0,0,0,0.18);
+  padding: 2px 8px;
+  border-radius: 6px;
+  display: none;
+}

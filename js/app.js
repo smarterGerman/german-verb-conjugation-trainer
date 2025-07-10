@@ -409,20 +409,16 @@ class VerbTrainer {
 
     // Find the tense name for the current exercise
     const tenseName = this.tenses.find(t => t.id === exercise.tense)?.name || exercise.tense;
+    // Responsive, visually balanced colored boxes for pronoun and verb
     return `
       <div class="practice-container">
         <!-- Header -->
         <div class="practice-header">
           <div class="header-content">
-            <button id="back-to-setup" class="back-btn">
-              ← Setup
-            </button>
-            
+            <button id="back-to-setup" class="back-btn">← Setup</button>
             <div class="header-info">
-              ${this.categories.find(c => c.id === this.sessionSettings.category)?.name} • 
-              ${tenseName}
+              ${this.categories.find(c => c.id === this.sessionSettings.category)?.name} • ${tenseName}
             </div>
-
             <div class="header-actions">
               <button id="show-stats" class="stats-btn">📊</button>
               <button id="end-session" class="stats-btn">⏹️</button>
@@ -436,14 +432,14 @@ class VerbTrainer {
             <!-- Progress indicator -->
             ${this.renderProgressIndicator()}
 
-            <!-- Verb presentation -->
-            <div class="verb-display ${exercise.showAnswer ? exercise.feedback : ''}">
-              <div class="verb-main" id="verb-main" style="cursor:pointer;" title="Show/hide translation">
+            <!-- Pronoun & Verb colored boxes -->
+            <div class="verb-row">
+              <div class="pronoun-box pronoun-${exercise.pronoun}">
+                ${exercise.pronoun}
+              </div>
+              <div class="verb-box verbcat-${exercise.verb.category}" id="verb-main" title="Show/hide translation">
                 ${exercise.infinitive}
                 <span class="verb-english" id="verb-english" style="display:none;">${exercise.english}</span>
-              </div>
-              <div class="verb-pronoun ${exercise.pronoun === 'sie' ? 'pronoun-plural' : ''}">
-                ${exercise.pronoun}
               </div>
             </div>
 
@@ -459,7 +455,7 @@ class VerbTrainer {
               />
             </div>
 
-            ${exercise.showAnswer ? `
+            ${(exercise.showAnswer && exercise.feedback !== 'correct') ? `
               <div class="correct-answer">
                 Correct: <span class="correct-answer-text">
                   ${exercise.correctAnswers.join(' / ')}
