@@ -187,7 +187,7 @@ class VerbTrainer {
                 ` : `
                   <div>✗ Incorrect</div>
                   <div class="correct-answer">
-                    Correct answer: <span class="correct-answer-text">
+                    Correct: <span class="correct-answer-text">
                       ${exercise.correctAnswers.join(' / ')}
                     </span>
                   </div>
@@ -202,7 +202,7 @@ class VerbTrainer {
                   Check
                 </button>
                 <button id="show-answer" class="show-btn">
-                  Show Answer
+                  Answer
                 </button>
               ` : `
                 <button id="next-verb" class="next-btn">
@@ -211,14 +211,6 @@ class VerbTrainer {
                 </button>
               `}
             </div>
-          </div>
-
-          <!-- Quick restart -->
-          <div class="reset-section">
-            <button id="reset-exercise" class="reset-btn">
-              <span>🔄</span>
-              <span>Reset Exercise</span>
-            </button>
           </div>
         </div>
       </div>
@@ -315,14 +307,6 @@ class VerbTrainer {
 
     // Next verb
     if (target.id === 'next-verb') {
-      this.generateNewExercise();
-      this.render();
-      this.attachEventListeners();
-      setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
-    }
-
-    // Reset exercise
-    if (target.id === 'reset-exercise') {
       this.generateNewExercise();
       this.render();
       this.attachEventListeners();
