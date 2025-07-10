@@ -438,8 +438,9 @@ class VerbTrainer {
 
             <!-- Verb presentation -->
             <div class="verb-display ${exercise.showAnswer ? exercise.feedback : ''}">
-              <div class="verb-main">
-                ${exercise.infinitive} <span class="verb-english">${exercise.english}</span>
+              <div class="verb-main" id="verb-main" style="cursor:pointer;" title="Show translation">
+                ${exercise.infinitive}
+                <span class="verb-english" id="verb-english" style="display:none;">${exercise.english}</span>
               </div>
               <div class="verb-pronoun ${exercise.pronoun === 'sie' ? 'pronoun-plural' : ''}">
                 ${exercise.pronoun}
@@ -576,7 +577,18 @@ class VerbTrainer {
     app.addEventListener('keydown', this.boundHandleKeydown);
     app.addEventListener('input', this.boundHandleInput);
     app.addEventListener('change', this.boundHandleChange);
-  
+
+    // Add listener for showing translation on verb click
+    setTimeout(() => {
+      const verbMain = document.getElementById('verb-main');
+      const verbEnglish = document.getElementById('verb-english');
+      if (verbMain && verbEnglish) {
+        verbMain.addEventListener('click', () => {
+          verbEnglish.style.display = verbEnglish.style.display === 'none' ? 'inline' : 'none';
+        });
+      }
+    }, 0);
+
     // Add document-level keyboard listener for shortcuts
     if (this.documentKeyListener) {
       document.removeEventListener('keydown', this.documentKeyListener);
