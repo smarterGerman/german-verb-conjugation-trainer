@@ -583,24 +583,27 @@ class VerbTrainer {
       const verbMain = document.getElementById('verb-main');
       const verbEnglish = document.getElementById('verb-english');
       if (verbMain && verbEnglish) {
-        // Track translation state
-        let translationVisible = false;
+        // Use a persistent state on window
+        window.translationVisible = window.translationVisible || false;
         const showTranslation = () => {
           verbEnglish.style.display = 'inline';
-          translationVisible = true;
+          window.translationVisible = true;
         };
         const hideTranslation = () => {
           verbEnglish.style.display = 'none';
-          translationVisible = false;
+          window.translationVisible = false;
         };
         const toggleTranslation = () => {
-          translationVisible ? hideTranslation() : showTranslation();
+          window.translationVisible ? hideTranslation() : showTranslation();
         };
         verbMain.addEventListener('click', toggleTranslation);
-        // Shortcut: Shift+Cmd/Ctrl+#
         window.toggleTranslationShortcut = toggleTranslation;
-        // Set initial state
-        hideTranslation();
+        // Set initial state based on window.translationVisible
+        if (window.translationVisible) {
+          showTranslation();
+        } else {
+          hideTranslation();
+        }
       }
     }, 0);
 
@@ -628,7 +631,11 @@ class VerbTrainer {
         if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === '#' || e.key === '3')) {
           e.preventDefault();
           e.stopPropagation();
-          if (window.toggleTranslationShortcut) window.toggleTranslationShortcut();
+          if (window.toggleTranslationShortcut) {
+            window.toggleTranslationShortcut();
+            // Keep translation state persistent across renders
+            window.translationVisible = document.getElementById('verb-english')?.style.display === 'inline';
+          }
         }
         // Shift+Cmd/Ctrl+Enter OR Tab for next verb
         if (this.currentExercise.showAnswer && (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab')) {
