@@ -1,33 +1,458 @@
-/* Custom styles for icons and animations */
-.icon {
-    width: 1.25rem;
-    height: 1.25rem;
+/* css/style.css - Complete styling to replace Tailwind */
+
+/* Reset and base styles */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    line-height: 1.6;
+    color: #374151;
+    background-color: #f9fafb;
+    min-height: 100vh;
+}
+
+/* Container styles */
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 1rem;
+}
+
+/* Setup screen styles */
+.setup-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+}
+
+.setup-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
+    padding: 2rem;
+    max-width: 42rem;
+    width: 100%;
+}
+
+.setup-header {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.setup-title {
+    font-size: 1.875rem;
+    font-weight: 300;
+    color: #1f2937;
+    margin-bottom: 0.5rem;
+}
+
+.setup-subtitle {
+    color: #6b7280;
+    font-size: 1rem;
+}
+
+.setup-section {
+    margin-bottom: 2rem;
+}
+
+.section-title {
+    font-size: 1.125rem;
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 1rem;
+}
+
+/* Grid layouts */
+.category-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+.tense-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 0.75rem;
+}
+
+/* Button styles */
+.category-btn, .tense-btn {
+    padding: 1rem;
+    border-radius: 0.75rem;
+    border: 2px solid #e5e7eb;
+    background: white;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-family: inherit;
+    font-size: 0.875rem;
+}
+
+.category-btn:hover, .tense-btn:hover {
+    border-color: #d1d5db;
+    transform: translateY(-1px);
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+}
+
+.category-btn.selected, .tense-btn.selected {
+    border-color: #3b82f6;
+    background-color: #eff6ff;
+}
+
+.btn-title {
+    font-weight: 500;
+    color: #1f2937;
+    margin-bottom: 0.25rem;
+}
+
+.btn-desc {
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.start-btn {
+    width: 100%;
+    background-color: #3b82f6;
+    color: white;
+    padding: 1rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    font-size: 1rem;
+}
+
+.start-btn:hover {
+    background-color: #2563eb;
+}
+
+/* Practice screen styles */
+.practice-container {
+    min-height: 100vh;
+    background-color: #f9fafb;
+}
+
+.practice-header {
+    background: white;
+    border-bottom: 1px solid #e5e7eb;
+    padding: 1rem 1.5rem;
+}
+
+.header-content {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 64rem;
+    margin: 0 auto;
+}
+
+.back-btn {
+    display: flex;
+    align-items: center;
+    color: #6b7280;
+    text-decoration: none;
+    transition: color 0.3s ease;
+    background: none;
+    border: none;
+    cursor: pointer;
+    font-size: 0.875rem;
+}
+
+.back-btn:hover {
+    color: #1f2937;
+}
+
+.header-info {
+    text-align: center;
+    font-size: 0.875rem;
+    color: #6b7280;
+}
+
+.header-actions {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.stats-btn {
+    padding: 0.5rem;
+    color: #6b7280;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 1.2rem;
+}
+
+.stats-btn:hover {
+    color: #1f2937;
+}
+
+/* Main practice area */
+.practice-main {
+    max-width: 32rem;
+    margin: 0 auto;
+    padding: 1.5rem;
+    padding-top: 3rem;
+}
+
+.practice-card {
+    background: white;
+    border-radius: 1rem;
+    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    padding: 2rem;
+}
+
+.progress-info {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.875rem;
+    color: #6b7280;
+    margin-bottom: 2rem;
+}
+
+/* Verb presentation */
+.verb-display {
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.verb-main {
+    font-size: 2.25rem;
+    font-weight: 300;
+    color: #1f2937;
+    margin-bottom: 1.5rem;
+}
+
+.verb-english {
+    font-size: 1.125rem;
+    color: #6b7280;
+}
+
+.verb-pronoun {
+    font-size: 1.5rem;
+    font-weight: 500;
+    color: #3b82f6;
+}
+
+/* Input area */
+.input-section {
+    margin-bottom: 1rem;
+}
+
+.verb-input {
+    width: 100%;
+    padding: 1rem;
+    font-size: 1.125rem;
+    border: 2px solid #d1d5db;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    outline: none;
+    font-family: inherit;
+}
+
+.verb-input:focus {
+    border-color: #3b82f6;
+    box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
+}
+
+.verb-input:disabled {
+    background-color: #f9fafb;
+    cursor: not-allowed;
+}
+
+.verb-input.correct {
+    border-color: #10b981;
+    background-color: #f0fdf4;
+}
+
+.verb-input.incorrect {
+    border-color: #ef4444;
+    background-color: #fef2f2;
+}
+
+/* Feedback */
+.feedback {
+    text-align: center;
+    margin: 1rem 0;
+}
+
+.feedback.correct {
+    color: #059669;
+    font-weight: 500;
+}
+
+.feedback.incorrect {
+    color: #dc2626;
+}
+
+.correct-answer {
+    color: #374151;
+    margin-top: 0.5rem;
+}
+
+.correct-answer-text {
+    font-weight: 500;
+}
+
+/* Action buttons */
+.action-buttons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    padding-top: 1rem;
+}
+
+.check-btn, .show-btn, .next-btn {
+    padding: 0.75rem 2rem;
+    border-radius: 0.75rem;
+    font-weight: 500;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.check-btn, .next-btn {
+    background-color: #3b82f6;
+    color: white;
+}
+
+.check-btn:hover, .next-btn:hover {
+    background-color: #2563eb;
+}
+
+.check-btn:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.show-btn {
+    border: 2px solid #d1d5db;
+    color: #374151;
+    background: white;
+}
+
+.show-btn:hover {
+    border-color: #9ca3af;
+}
+
+.next-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+/* Reset section */
+.reset-section {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.reset-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: #6b7280;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: color 0.3s ease;
+    font-size: 0.875rem;
+}
+
+.reset-btn:hover {
+    color: #1f2937;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    .setup-card {
+        padding: 1.5rem;
+        margin: 1rem;
+    }
+    
+    .category-grid, .tense-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .practice-main {
+        padding: 1rem;
+        padding-top: 2rem;
+    }
+    
+    .practice-card {
+        padding: 1.5rem;
+    }
+    
+    .verb-main {
+        font-size: 1.875rem;
+    }
+    
+    .verb-pronoun {
+        font-size: 1.25rem;
+    }
+    
+    .action-buttons {
+        flex-direction: column;
+    }
+    
+    .check-btn, .show-btn, .next-btn {
+        width: 100%;
+    }
+    
+    .header-content {
+        padding: 0 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .setup-card {
+        padding: 1rem;
+    }
+    
+    .verb-main {
+        font-size: 1.5rem;
+    }
+    
+    .verb-input {
+        font-size: 1rem;
+        padding: 0.875rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
 }
 
 .fade-in {
     animation: fadeIn 0.3s ease-in;
 }
 
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(10px); }
-    to { opacity: 1; transform: translateY(0); }
+/* Focus management */
+.verb-input:focus {
+    outline: none;
 }
 
-.correct-feedback {
-    background-color: #f0f9ff;
-    border-color: #10b981;
-    color: #065f46;
-}
-
-.incorrect-feedback {
-    background-color: #fef2f2;
-    border-color: #ef4444;
-    color: #991b1b;
-}
-
-/* Responsive improvements */
-@media (max-width: 640px) {
-    .mobile-padding {
-        padding: 1rem;
+/* Print styles */
+@media print {
+    .practice-header,
+    .reset-section {
+        display: none;
     }
 }
