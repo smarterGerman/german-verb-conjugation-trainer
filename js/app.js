@@ -205,11 +205,14 @@ class VerbTrainer {
       exerciseTense = tenses[Math.floor(Math.random() * tenses.length)];
     }
 
-    const verb = this.verbSelector.selectNextVerb(
+    let verb = this.verbSelector.selectNextVerb(
       this.sessionSettings.category,
       exerciseTense
     );
-
+    // Fallback: If no verb found for 'essential', try 'all' category
+    if (!verb && this.sessionSettings.category === 'essential') {
+      verb = this.verbSelector.selectNextVerb('all', exerciseTense);
+    }
     if (!verb) return null;
 
     // Pick a pronoun key (with new sie_sg, sie_pl, Sie logic)
