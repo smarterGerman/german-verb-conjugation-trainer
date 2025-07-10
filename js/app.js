@@ -23,9 +23,9 @@ class VerbTrainer {
 ];
 
     this.tenses = [
-      { id: 'present', name: 'Prsens', desc: 'Present tense' },
+      { id: 'present', name: 'Präsens', desc: 'Present tense' },
       { id: 'perfect', name: 'Perfekt', desc: 'Present perfect' },
-      { id: 'preterite', name: 'Prteritum', desc: 'Simple past' },
+      { id: 'preterite', name: 'Präteritum', desc: 'Simple past' },
       { id: 'imperative', name: 'Imperativ', desc: 'Commands' },
       { id: 'subjunctive1', name: 'Konjunktiv I', desc: 'Indirect speech' },
       { id: 'subjunctive2', name: 'Konjunktiv II', desc: 'Hypothetical/Polite' }
