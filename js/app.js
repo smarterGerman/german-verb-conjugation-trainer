@@ -209,9 +209,11 @@ class VerbTrainer {
       this.sessionSettings.category,
       exerciseTense
     );
-    // Fallback: If no verb found for 'essential', try 'all' category
-    if (!verb && this.sessionSettings.category === 'essential') {
+    let fallbackCategory = null;
+    // Fallback: If no verb found for selected category, try 'all' category
+    if (!verb && this.sessionSettings.category !== 'all') {
       verb = this.verbSelector.selectNextVerb('all', exerciseTense);
+      fallbackCategory = 'all';
     }
     if (!verb) return null;
 
@@ -252,7 +254,8 @@ class VerbTrainer {
       tense: exerciseTense,
       showAnswer: false,
       feedback: '',
-      userInput: ''
+      userInput: '',
+      fallbackCategory
     };
 
     return this.currentExercise;
@@ -440,6 +443,13 @@ class VerbTrainer {
     // Responsive, visually balanced colored boxes for pronoun and verb
     // Hide placeholder after 3 user entries in this session
     const hidePlaceholder = this.questionsAnswered >= 3;
+    // Show fallback info if verb category changed
+    let fallbackInfo = '';
+    if (exercise.fallbackCategory === 'all') {
+      const origCat = this.categories.find(c => c.id === this.sessionSettings.category)?.name;
+      const actualCat = this.categories.find(c => c.id === exercise.verb.category)?.name;
+      fallbackInfo = `<div class="fallback-info">No verbs found for <b>${origCat}</b>. Showing verb from <b>${actualCat}</b> instead.</div>`;
+    }
     return `
       <div class="practice-container">
         <!-- Header -->
@@ -451,13 +461,12 @@ class VerbTrainer {
             </div>
           </div>
         </div>
-
+        ${fallbackInfo}
         <!-- Main Practice Area -->
         <div class="practice-main">
           <div class="practice-card">
             <!-- Progress indicator -->
             ${this.renderProgressIndicator()}
-
             <!-- Pronoun & Verb colored boxes -->
             <div class="verb-row">
               <div class="pronoun-box pronoun-${exercise.pronoun}">
@@ -470,7 +479,6 @@ class VerbTrainer {
                 ${exercise.infinitive}
               </div>
             </div>
-
             <!-- Input area -->
             <div class="input-section">
               <input
@@ -482,7 +490,6 @@ class VerbTrainer {
                 class="verb-input ${exercise.feedback === 'correct' ? 'correct' : exercise.feedback === 'incorrect' ? 'incorrect' : ''}"
               />
             </div>
-
             ${(exercise.showAnswer && exercise.feedback !== 'correct') ? `
               <div class="correct-answer">
                 Correct: <span class="correct-answer-text">
@@ -490,7 +497,6 @@ class VerbTrainer {
                 </span>
               </div>
             ` : ''}
-
             <!-- Action buttons -->
             <div class="action-buttons">
               ${!exercise.showAnswer ? `
