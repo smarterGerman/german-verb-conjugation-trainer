@@ -44,7 +44,8 @@ class VerbTrainer {
       { id: 'preterite', name: 'Präteritum', desc: 'Simple past' },
       { id: 'imperative', name: 'Imperativ', desc: 'Commands' },
       { id: 'subjunctive1', name: 'Konjunktiv I', desc: 'Indirect speech' },
-      { id: 'subjunctive2', name: 'Konjunktiv II', desc: 'Hypothetical/Polite' }
+      { id: 'subjunctive2', name: 'Konjunktiv II', desc: 'Hypothetical/Polite' },
+      { id: 'mix', name: 'Mix', desc: 'A mix of all tenses/moods' }
     ];
 
     this.init();
