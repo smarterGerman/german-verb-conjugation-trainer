@@ -281,18 +281,30 @@ class VerbTrainer {
       showAnswer: this.currentExercise.showAnswer
     });
     
-    // Shift+Ctrl+I for showing answer (when answer is NOT shown)
-    if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === 'I' || e.key === 'i') && !this.currentExercise.showAnswer) {
-      console.log('Show answer shortcut detected!');
-      e.preventDefault();
-      e.stopPropagation();
-      
-      this.currentExercise.showAnswer = true;
-      this.currentExercise.feedback = 'shown';
-      this.render();
-      this.attachEventListeners();
-      return;
-    }
+    // Shift+Cmd/Ctrl+I for showing answer (when answer is NOT shown)
+if ((e.metaKey || e.ctrlKey) && e.shiftKey && (e.key === 'I' || e.key === 'i')) {
+  console.log('Shortcut condition check:', {
+    metaOrCtrl: (e.metaKey || e.ctrlKey),
+    shift: e.shiftKey,
+    keyMatch: (e.key === 'I' || e.key === 'i'),
+    showAnswer: this.currentExercise.showAnswer,
+    shouldShow: !this.currentExercise.showAnswer
+  });
+  
+  if (!this.currentExercise.showAnswer) {
+    console.log('Show answer shortcut detected!');
+    e.preventDefault();
+    e.stopPropagation();
+    
+    this.currentExercise.showAnswer = true;
+    this.currentExercise.feedback = 'shown';
+    this.render();
+    this.attachEventListeners();
+    return;
+  } else {
+    console.log('Answer already shown, shortcut ignored');
+  }
+}
     
     // Shift+Cmd/Ctrl+Enter OR Tab for next verb (when answer IS shown)
     if (this.currentExercise.showAnswer && (((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') || e.key === 'Tab')) {
