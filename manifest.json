@@ -1,0 +1,36 @@
+{
+  "name": "German Verb Conjugation Trainer",
+  "short_name": "German Verbs",
+  "description": "Learn German verb conjugations offline",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#f9fafb",
+  "theme_color": "#3b82f6",
+  "orientation": "portrait",
+  "scope": "/",
+  "lang": "de",
+  "categories": ["education", "productivity"],
+  "icons": [
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTkyIiBoZWlnaHQ9IjE5MiIgdmlld0JveD0iMCAwIDE5MiAxOTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIxOTIiIGhlaWdodD0iMTkyIiByeD0iMjQiIGZpbGw9IiMzYjgyZjYiLz4KPHN2ZyB4PSI0OCIgeT0iNDgiIHdpZHRoPSI5NiIgaGVpZ2h0PSI5NiIgdmlld0JveD0iMCAwIDI0IDI0IiBmaWxsPSIjZmZmZmZmIj4KICA8cGF0aCBkPSJNMTMgMTVIMTFWMTdIMTNWMTVaTTEzIDExSDExVjEzSDEzVjExWk0xMyA3SDExVjlIMTNWN1pNMTEgM0gxM1Y1SDExVjNaTTUgM0g3VjVINVYzWk01IDdIN1Y5SDVWN1pNNSAxMUg3VjEzSDVWMTFaTTUgMTVIN1YxN0g1VjE1WiIvPgo8L3N2Zz4KPC9zdmc+",
+      "sizes": "192x192",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNTEyIiBoZWlnaHQ9IjUxMiIgdmlld0JveD0iMCAwIDUxMiA1MTIiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSI1MTIiIGhlaWdodD0iNTEyIiByeD0iNjQiIGZpbGw9IiMzYjgyZjYiLz4KPHN2ZyB4PSIxMjgiIHk9IjEyOCIgd2lkdGg9IjI1NiIgaGVpZ2h0PSIyNTYiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0iI2ZmZmZmZiI+CiAgPHBhdGggZD0iTTEzIDE1SDExVjE3SDEzVjE1Wk0xMyAxMUgxMVYxM0gxM1YxMVpNMTMgN0gxMVY5SDEzVjdaTTExIDNIMTNWNUgxMVYzWk01IDNIN1Y1SDVWM1pNNSA3SDdWOUg1VjdaTTUgMTFIN1YxM0g1VjExWk01IDE1SDdWMTdINVYxNVoiLz4KPC9zdmc+Cjwvc3ZnPg==",
+      "sizes": "512x512", 
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Verb Practice",
+      "short_name": "Practice",
+      "description": "Start practicing verb conjugations",
+      "url": "/#practice"
+    }
+  ],
+  "prefer_related_applications": false
+}

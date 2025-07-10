@@ -20,18 +20,32 @@
     <script type="module" src="js/app.js"></script>
 
     <!-- Service worker for offline functionality -->
-    <script>
-    if ('serviceWorker' in navigator) {
-      window.addEventListener('load', () => {
-        navigator.serviceWorker.register('/sw.js')
-          .then(registration => {
-            console.log('SW registered: ', registration);
-          })
-          .catch(registrationError => {
-            console.log('SW registration failed: ', registrationError);
+    <!-- Service worker for offline functionality -->
+<script>
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(registration => {
+        console.log('SW registered successfully:', registration.scope);
+        
+        // Handle updates
+        registration.addEventListener('updatefound', () => {
+          const newWorker = registration.installing;
+          newWorker.addEventListener('statechange', () => {
+            if (newWorker.state === 'installed' && navigator.serviceWorker.controller) {
+              console.log('New version available! Refresh to update.');
+              if (confirm('New version available! Refresh to update?')) {
+                window.location.reload();
+              }
+            }
           });
+        });
+      })
+      .catch(error => {
+        console.error('SW registration failed:', error);
       });
-    }
-    </script>
+  });
+}
+</script>
 </body>
 </html>
