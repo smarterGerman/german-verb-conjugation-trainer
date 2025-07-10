@@ -435,6 +435,8 @@ class VerbTrainer {
     // Find the tense name for the current exercise
     const tenseName = this.tenses.find(t => t.id === exercise.tense)?.name || exercise.tense;
     // Responsive, visually balanced colored boxes for pronoun and verb
+    // Hide placeholder after 3 user entries in this session
+    const hidePlaceholder = this.questionsAnswered >= 3;
     return `
       <div class="practice-container">
         <!-- Header -->
@@ -472,7 +474,7 @@ class VerbTrainer {
                 type="text"
                 id="verb-input"
                 value="${exercise.userInput}"
-                placeholder="Type pronoun + verb (e.g., er geht)..."
+                placeholder="${hidePlaceholder ? '' : 'Type pronoun + verb (e.g., er geht)...'}"
                 ${exercise.showAnswer ? 'disabled' : ''}
                 class="verb-input ${exercise.feedback === 'correct' ? 'correct' : exercise.feedback === 'incorrect' ? 'incorrect' : ''}"
               />
