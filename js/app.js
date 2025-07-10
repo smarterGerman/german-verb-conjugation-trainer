@@ -370,20 +370,22 @@ Verbs Practiced: ${stats.verbsPracticed}`);
   }
 
   handleKeypress(e) {
-    if (e.key === 'Enter' && this.currentMode === 'practice') {
-      if (!this.currentExercise.showAnswer) {
-        const input = document.getElementById('verb-input');
-        this.checkAnswer(input.value);
-        this.render();
-        this.attachEventListeners();
-      } else {
-        this.generateNewExercise();
-        this.render();
-        this.attachEventListeners();
-        setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
-      }
+  if (e.key === 'Enter' && this.currentMode === 'practice') {
+    if (!this.currentExercise.showAnswer) {
+      // Enter submits the answer
+      const input = document.getElementById('verb-input');
+      this.checkAnswer(input.value);
+      this.render();
+      this.attachEventListeners();
+    } else {
+      // Enter goes to next verb when answer is shown
+      this.generateNewExercise();
+      this.render();
+      this.attachEventListeners();
+      setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
     }
   }
+}
 
   handleInput(e) {
     if (e.target.id === 'verb-input' && this.currentExercise) {
