@@ -553,7 +553,14 @@ class VerbTrainer {
 
   render() {
     const app = document.getElementById('app');
-    
+
+    // Ensure currentExercise is set before rendering practice screen
+    if (this.currentMode === 'practice') {
+      if (!this.currentExercise) {
+        this.generateNewExercise();
+      }
+    }
+
     switch (this.currentMode) {
       case 'setup':
         app.innerHTML = this.renderSetupScreen();
@@ -608,11 +615,11 @@ class VerbTrainer {
     app.addEventListener('change', this.boundHandleChange);
 
     // Add listener for showing translation for 1s on verb click and shortcut
+    // Ensure this runs after the DOM is updated and verb-main exists
     setTimeout(() => {
       const verbMain = document.getElementById('verb-main');
       if (verbMain) {
         let translationTimeout = null;
-        // Always update the shortcut to the latest verbMain
         window.showTranslationForOneSecond = () => {
           if (translationTimeout) {
             clearTimeout(translationTimeout);
@@ -635,6 +642,13 @@ class VerbTrainer {
           if (input) input.focus();
         };
         verbMain.addEventListener('click', window.showTranslationForOneSecond);
+      } else {
+        // If verbMain does not exist, and we're in practice mode, force a re-render and re-attach listeners
+        if (this.currentMode === 'practice' && !this.sessionEnded && !this.currentExercise) {
+          this.generateNewExercise();
+          this.render();
+          this.attachEventListeners();
+        }
       }
     }, 0);
 
