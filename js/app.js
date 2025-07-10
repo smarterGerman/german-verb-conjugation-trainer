@@ -92,9 +92,11 @@ class VerbTrainer {
 
   startSessionTimer() {
     const timeLimit = this.sessionSettings.timeLimit * 60 * 1000; // Convert to milliseconds
+    console.log(`Starting ${this.sessionSettings.timeLimit} minute timer`);
     
     // Main timer for session end
     this.sessionTimer = setTimeout(() => {
+      console.log(`Time's up! ${this.sessionSettings.timeLimit} minutes elapsed`);
       this.endSession('time');
     }, timeLimit);
     
@@ -131,6 +133,8 @@ class VerbTrainer {
   endSession(reason = 'completed') {
     if (this.sessionEnded) return;
     
+    console.log(`Session ending. Reason: ${reason}. Questions answered: ${this.questionsAnswered}. Correct: ${this.correctAnswers}`);
+    
     this.sessionEnded = true;
     this.sessionEndTime = Date.now();
     
@@ -156,6 +160,7 @@ class VerbTrainer {
     // Check if verb count reached
     if (this.sessionSettings.sessionType === 'verbs' && 
         this.questionsAnswered >= this.sessionSettings.verbCount) {
+      console.log(`Session ended: ${this.questionsAnswered} verbs completed out of ${this.sessionSettings.verbCount}`);
       this.endSession('verbs');
       return true;
     }
@@ -233,6 +238,9 @@ class VerbTrainer {
       this.correctAnswers++;
     }
 
+    // Check if session should end after this answer
+    this.checkSessionEnd();
+
     return result;
   }
 
@@ -269,6 +277,8 @@ class VerbTrainer {
   }
 
   renderSettingsScreen() {
+    const isVerbMode = this.userSettings.defaultSessionType === 'verbs';
+    
     return `
       <div class="setup-container">
         <div class="setup-card">
@@ -291,29 +301,31 @@ class VerbTrainer {
             </div>
           </div>
 
-          <div class="setup-section">
-            <div class="section-title">Number of Verbs</div>
-            <div class="setting-group">
-              ${[5, 10, 15, 20].map(count => `
-                <label class="setting-option ${this.userSettings.defaultVerbCount === count ? 'selected' : ''}">
-                  <input type="radio" name="verbCount" value="${count}" ${this.userSettings.defaultVerbCount === count ? 'checked' : ''}>
-                  <span class="setting-label">${count} verbs</span>
-                </label>
-              `).join('')}
+          ${isVerbMode ? `
+            <div class="setup-section" id="verb-count-section">
+              <div class="section-title">Number of Verbs</div>
+              <div class="setting-group">
+                ${[5, 10, 15, 20].map(count => `
+                  <label class="setting-option ${this.userSettings.defaultVerbCount === count ? 'selected' : ''}">
+                    <input type="radio" name="verbCount" value="${count}" ${this.userSettings.defaultVerbCount === count ? 'checked' : ''}>
+                    <span class="setting-label">${count} verbs</span>
+                  </label>
+                `).join('')}
+              </div>
             </div>
-          </div>
-
-          <div class="setup-section">
-            <div class="section-title">Time Limit</div>
-            <div class="setting-group">
-              ${[1, 3, 5, 10].map(time => `
-                <label class="setting-option ${this.userSettings.defaultTimeLimit === time ? 'selected' : ''}">
-                  <input type="radio" name="timeLimit" value="${time}" ${this.userSettings.defaultTimeLimit === time ? 'checked' : ''}>
-                  <span class="setting-label">${time} minute${time > 1 ? 's' : ''}</span>
-                </label>
-              `).join('')}
+          ` : `
+            <div class="setup-section" id="time-limit-section">
+              <div class="section-title">Time Limit</div>
+              <div class="setting-group">
+                ${[1, 3, 5, 10].map(time => `
+                  <label class="setting-option ${this.userSettings.defaultTimeLimit === time ? 'selected' : ''}">
+                    <input type="radio" name="timeLimit" value="${time}" ${this.userSettings.defaultTimeLimit === time ? 'checked' : ''}>
+                    <span class="setting-label">${time} minute${time > 1 ? 's' : ''}</span>
+                  </label>
+                `).join('')}
+              </div>
             </div>
-          </div>
+          `}
 
           <div class="action-buttons">
             <button id="back-to-setup" class="show-btn">Back</button>
@@ -609,7 +621,12 @@ class VerbTrainer {
     // Handle settings changes
     if (e.target.name === 'sessionType') {
       this.userSettings.defaultSessionType = e.target.value;
-      this.updateSettingsUI();
+      // Re-render settings to show only relevant options
+      if (this.currentMode === 'settings') {
+        this.render();
+        this.attachEventListeners();
+      }
+      return;
     }
     
     if (e.target.name === 'verbCount') {
@@ -726,6 +743,11 @@ class VerbTrainer {
     if (target.id === 'show-answer') {
       this.currentExercise.showAnswer = true;
       this.currentExercise.feedback = 'shown';
+      this.questionsAnswered++; // Count shown answers too
+      
+      // Check if session should end
+      this.checkSessionEnd();
+      
       this.render();
       this.attachEventListeners();
       return;
