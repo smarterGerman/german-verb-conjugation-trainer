@@ -747,9 +747,11 @@ class VerbTrainer {
       this.sessionSettings.sessionType = this.userSettings.defaultSessionType;
       this.sessionSettings.verbCount = this.userSettings.defaultVerbCount;
       this.sessionSettings.timeLimit = this.userSettings.defaultTimeLimit;
-      
+
       this.startSession();
       this.generateNewExercise();
+      // Ensure exercise is generated before rendering
+      if (!this.currentExercise) this.generateNewExercise();
       this.render();
       this.attachEventListeners();
       setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
