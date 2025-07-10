@@ -42,29 +42,34 @@ class VerbTrainer {
   }
 
   generateNewExercise() {
-    const verb = this.verbSelector.selectNextVerb(
-      this.sessionSettings.category, 
-      this.sessionSettings.tense
-    );
-    
-    if (!verb) return null;
-
-    const pronoun = AnswerValidator.getRandomPronoun(this.sessionSettings.tense);
-    const correctAnswers = verb.conjugations[this.sessionSettings.tense]?.[pronoun] || [];
-
-    this.currentExercise = {
-      verb,
-      pronoun,
-      correctAnswers,
-      infinitive: verb.infinitive,
-      english: verb.english,
-      showAnswer: false,
-      feedback: '',
-      userInput: ''
-    };
-
-    return this.currentExercise;
+  const verb = this.verbSelector.selectNextVerb(
+    this.sessionSettings.category, 
+    this.sessionSettings.tense
+  );
+  
+  console.log('Generated new verb:', verb); // Debug log
+  
+  if (!verb) {
+    console.log('No verb returned!'); // Debug log
+    return null;
   }
+
+  const pronoun = AnswerValidator.getRandomPronoun(this.sessionSettings.tense);
+  const correctAnswers = verb.conjugations[this.sessionSettings.tense]?.[pronoun] || [];
+
+  this.currentExercise = {
+    verb,
+    pronoun,
+    correctAnswers,
+    infinitive: verb.infinitive,
+    english: verb.english,
+    showAnswer: false,
+    feedback: '',
+    userInput: ''
+  };
+
+  return this.currentExercise;
+}
 
   checkAnswer(userInput) {
     if (!this.currentExercise) return null;
@@ -175,9 +180,9 @@ class VerbTrainer {
               <div class="verb-main">
                 ${exercise.infinitive} <span class="verb-english">${exercise.english}</span>
               </div>
-              <div class="verb-pronoun">
-                ${exercise.pronoun}
-              </div>
+              <div class="verb-pronoun ${exercise.pronoun === 'sie' ? 'pronoun-plural' : ''}">
+  ${exercise.pronoun}
+</div>
             </div>
 
             <!-- Input area -->
@@ -313,12 +318,19 @@ class VerbTrainer {
     }
 
     // Next verb
-    if (target.id === 'next-verb') {
-      this.generateNewExercise();
-      this.render();
-      this.attachEventListeners();
-      setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
+if (target.id === 'next-verb' || target.closest('#next-verb')) {
+  console.log('Next verb clicked'); // Debug log
+  this.generateNewExercise();
+  this.render();
+  this.attachEventListeners();
+  setTimeout(() => {
+    const input = document.getElementById('verb-input');
+    if (input) {
+      input.focus();
     }
+  }, 150);
+  return; // Exit early to prevent other handlers
+}
 
     // Show stats
     if (target.id === 'show-stats') {
@@ -334,7 +346,21 @@ Session Time: ${sessionTime} min`);
   }
 
   handleKeydown(e) {
-    if (e.key === 'Enter' && this.currentMode === 'practice') {
+  if (this.currentMode === 'practice') {
+    // SHIFT + CMD/CTRL + ENTER for next verb (when answer is shown)
+    if ((e.metaKey || e.ctrlKey) && e.shiftKey && e.key === 'Enter') {
+      e.preventDefault();
+      if (this.currentExercise && this.currentExercise.showAnswer) {
+        this.generateNewExercise();
+        this.render();
+        this.attachEventListeners();
+        setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
+      }
+      return;
+    }
+    
+    // Regular ENTER for checking answer
+    if (e.key === 'Enter' && !e.metaKey && !e.ctrlKey && !e.shiftKey) {
       e.preventDefault();
       
       if (!this.currentExercise.showAnswer) {
@@ -345,15 +371,10 @@ Session Time: ${sessionTime} min`);
           this.render();
           this.attachEventListeners();
         }
-      } else {
-        // Enter goes to next verb when answer is shown
-        this.generateNewExercise();
-        this.render();
-        this.attachEventListeners();
-        setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
       }
     }
   }
+}
 
   handleInput(e) {
     if (e.target.id === 'verb-input' && this.currentExercise) {
