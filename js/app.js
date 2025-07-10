@@ -1,4 +1,4 @@
-// js/app.js - Main Application
+// js/app.js - Updated to use custom CSS classes
 import { VerbSelector } from './verbSelector.js';
 import { AnswerValidator } from './answerValidator.js';
 
@@ -13,14 +13,14 @@ class VerbTrainer {
     };
     
     this.categories = [
-  { id: 'essential', name: 'Essential', desc: 'sein, haben, werden...' },
-  { id: 'modal', name: 'Modal', desc: 'können, müssen, wollen...' },
-  { id: 'regular', name: 'Regular', desc: 'machen, sagen, lernen...' },
-  { id: 'strong', name: 'Strong', desc: 'gehen, nehmen, geben...' },
-  { id: 'separable', name: 'Separable', desc: 'aufstehen, ankommen...' },
-  { id: 'inseparable', name: 'Inseparable', desc: 'verstehen, beginnen...' },
-  { id: 'ieren', name: '-ieren', desc: 'studieren, funktionieren...' }
-];
+      { id: 'essential', name: 'Essential', desc: 'sein, haben, werden...' },
+      { id: 'modal', name: 'Modal', desc: 'können, müssen, wollen...' },
+      { id: 'regular', name: 'Regular', desc: 'machen, sagen, lernen...' },
+      { id: 'strong', name: 'Strong', desc: 'gehen, nehmen, geben...' },
+      { id: 'separable', name: 'Separable', desc: 'aufstehen, ankommen...' },
+      { id: 'inseparable', name: 'Inseparable', desc: 'verstehen, beginnen...' },
+      { id: 'ieren', name: '-ieren', desc: 'studieren, funktionieren...' }
+    ];
 
     this.tenses = [
       { id: 'present', name: 'Präsens', desc: 'Present tense' },
@@ -83,59 +83,46 @@ class VerbTrainer {
 
   renderSetupScreen() {
     return `
-      <div class="min-h-screen bg-gray-50 flex items-center justify-center p-4">
-        <div class="bg-white rounded-2xl shadow-xl p-8 max-w-2xl w-full">
-          <div class="text-center mb-8">
-            <h1 class="text-3xl font-light text-gray-800 mb-2">German Verb Trainer</h1>
-            <p class="text-gray-600">Select your practice focus</p>
+      <div class="setup-container">
+        <div class="setup-card">
+          <div class="setup-header">
+            <h1 class="setup-title">German Verb Trainer</h1>
+            <p class="setup-subtitle">Select your practice focus</p>
           </div>
 
-          <div class="space-y-8">
-            <div>
-              <h3 class="text-lg font-medium text-gray-800 mb-4">Verb Category</h3>
-              <div class="grid grid-cols-2 gap-3" id="category-selection">
-                ${this.categories.map(category => `
-                  <button
-                    data-category="${category.id}"
-                    class="category-btn p-4 rounded-xl border-2 transition-all text-left ${
-                      this.sessionSettings.category === category.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }"
-                  >
-                    <div class="font-medium text-gray-800">${category.name}</div>
-                    <div class="text-sm text-gray-600 mt-1">${category.desc}</div>
-                  </button>
-                `).join('')}
-              </div>
+          <div class="setup-section">
+            <h3 class="section-title">Verb Category</h3>
+            <div class="category-grid" id="category-selection">
+              ${this.categories.map(category => `
+                <button
+                  data-category="${category.id}"
+                  class="category-btn ${this.sessionSettings.category === category.id ? 'selected' : ''}"
+                >
+                  <div class="btn-title">${category.name}</div>
+                  <div class="btn-desc">${category.desc}</div>
+                </button>
+              `).join('')}
             </div>
-
-            <div>
-              <h3 class="text-lg font-medium text-gray-800 mb-4">Tense/Mood</h3>
-              <div class="grid grid-cols-2 gap-3" id="tense-selection">
-                ${this.tenses.map(tense => `
-                  <button
-                    data-tense="${tense.id}"
-                    class="tense-btn p-4 rounded-xl border-2 transition-all text-left ${
-                      this.sessionSettings.tense === tense.id
-                        ? 'border-blue-500 bg-blue-50'
-                        : 'border-gray-200 hover:border-gray-300'
-                    }"
-                  >
-                    <div class="font-medium text-gray-800">${tense.name}</div>
-                    <div class="text-sm text-gray-600 mt-1">${tense.desc}</div>
-                  </button>
-                `).join('')}
-              </div>
-            </div>
-
-            <button
-              id="start-practice"
-              class="w-full bg-blue-600 text-white py-4 rounded-xl font-medium hover:bg-blue-700 transition-colors"
-            >
-              Start Practice
-            </button>
           </div>
+
+          <div class="setup-section">
+            <h3 class="section-title">Tense/Mood</h3>
+            <div class="tense-grid" id="tense-selection">
+              ${this.tenses.map(tense => `
+                <button
+                  data-tense="${tense.id}"
+                  class="tense-btn ${this.sessionSettings.tense === tense.id ? 'selected' : ''}"
+                >
+                  <div class="btn-title">${tense.name}</div>
+                  <div class="btn-desc">${tense.desc}</div>
+                </button>
+              `).join('')}
+            </div>
+          </div>
+
+          <button id="start-practice" class="start-btn">
+            Start Practice
+          </button>
         </div>
       </div>
     `;
@@ -146,116 +133,95 @@ class VerbTrainer {
     if (!exercise) return '';
 
     return `
-      <div class="min-h-screen bg-gray-50">
+      <div class="practice-container">
         <!-- Header -->
-        <div class="bg-white border-b border-gray-200 px-6 py-4">
-          <div class="flex items-center justify-between max-w-4xl mx-auto">
-            <button
-              id="back-to-setup"
-              class="flex items-center text-gray-600 hover:text-gray-800 transition-colors"
-            >
-               Setup
+        <div class="practice-header">
+          <div class="header-content">
+            <button id="back-to-setup" class="back-btn">
+              ← Setup
             </button>
             
-            <div class="text-center">
-              <div class="text-sm text-gray-500">
-                ${this.categories.find(c => c.id === this.sessionSettings.category)?.name}  
-                ${this.tenses.find(t => t.id === this.sessionSettings.tense)?.name}
-              </div>
+            <div class="header-info">
+              ${this.categories.find(c => c.id === this.sessionSettings.category)?.name} • 
+              ${this.tenses.find(t => t.id === this.sessionSettings.tense)?.name}
             </div>
 
-            <div class="flex items-center space-x-4">
-              <button id="show-stats" class="p-2 text-gray-600 hover:text-gray-800 transition-colors">
-                
-              </button>
+            <div class="header-actions">
+              <button id="show-stats" class="stats-btn">📊</button>
             </div>
           </div>
         </div>
 
         <!-- Main Practice Area -->
-        <div class="max-w-2xl mx-auto p-6 pt-12">
-          <div class="bg-white rounded-2xl shadow-lg p-8">
+        <div class="practice-main">
+          <div class="practice-card">
+            <!-- Progress indicator -->
+            <div class="progress-info">
+              <span>Question 1 of 20</span>
+              <span>Session: 15 min</span>
+            </div>
+
             <!-- Verb presentation -->
-            <div class="text-center mb-8">
-              <div class="text-4xl font-light text-gray-800 mb-6">
-                ${exercise.infinitive} <span class="text-2xl text-gray-600">${exercise.english}</span>
+            <div class="verb-display">
+              <div class="verb-main">
+                ${exercise.infinitive} <span class="verb-english">${exercise.english}</span>
               </div>
-              <div class="text-2xl text-blue-600 font-medium">
+              <div class="verb-pronoun">
                 ${exercise.pronoun}
               </div>
             </div>
 
             <!-- Input area -->
-            <div class="space-y-4">
-              <div class="relative">
-                <input
-                  type="text"
-                  id="verb-input"
-                  value="${exercise.userInput}"
-                  placeholder="Type pronoun + verb (e.g., er geht)..."
-                  ${exercise.showAnswer ? 'disabled' : ''}
-                  class="w-full p-4 text-lg border-2 rounded-xl transition-all outline-none ${
-                    exercise.feedback === 'correct' 
-                      ? 'border-green-500 bg-green-50' 
-                      : exercise.feedback === 'incorrect'
-                      ? 'border-red-500 bg-red-50'
-                      : 'border-gray-300 focus:border-blue-500'
-                  }"
-                />
-              </div>
+            <div class="input-section">
+              <input
+                type="text"
+                id="verb-input"
+                value="${exercise.userInput}"
+                placeholder="Type pronoun + verb (e.g., er geht)..."
+                ${exercise.showAnswer ? 'disabled' : ''}
+                class="verb-input ${exercise.feedback === 'correct' ? 'correct' : exercise.feedback === 'incorrect' ? 'incorrect' : ''}"
+              />
+            </div>
 
-              <!-- Feedback -->
-              ${exercise.showAnswer ? `
-                <div class="text-center">
-                  ${exercise.feedback === 'correct' ? `
-                    <div class="text-green-600 font-medium"> Correct!</div>
-                  ` : `
-                    <div class="space-y-2">
-                      <div class="text-red-600 font-medium"> Incorrect</div>
-                      <div class="text-gray-700">
-                        Correct answer: <span class="font-medium">
-                          ${exercise.correctAnswers.join(' / ')}
-                        </span>
-                      </div>
-                    </div>
-                  `}
-                </div>
-              ` : ''}
-
-              <!-- Action buttons -->
-              <div class="flex gap-3 justify-center pt-4">
-                ${!exercise.showAnswer ? `
-                  <button
-                    id="check-answer"
-                    class="px-8 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors"
-                  >
-                    Check
-                  </button>
-                  <button
-                    id="show-answer"
-                    class="px-8 py-3 border-2 border-gray-300 text-gray-700 rounded-xl font-medium hover:border-gray-400 transition-colors"
-                  >
-                    Show Answer
-                  </button>
+            <!-- Feedback -->
+            ${exercise.showAnswer ? `
+              <div class="feedback ${exercise.feedback}">
+                ${exercise.feedback === 'correct' ? `
+                  ✓ Correct!
                 ` : `
-                  <button
-                    id="next-verb"
-                    class="px-8 py-3 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors"
-                  >
-                    Next Verb 
-                  </button>
+                  <div>✗ Incorrect</div>
+                  <div class="correct-answer">
+                    Correct answer: <span class="correct-answer-text">
+                      ${exercise.correctAnswers.join(' / ')}
+                    </span>
+                  </div>
                 `}
               </div>
+            ` : ''}
+
+            <!-- Action buttons -->
+            <div class="action-buttons">
+              ${!exercise.showAnswer ? `
+                <button id="check-answer" class="check-btn" ${!exercise.userInput.trim() ? 'disabled' : ''}>
+                  Check
+                </button>
+                <button id="show-answer" class="show-btn">
+                  Show Answer
+                </button>
+              ` : `
+                <button id="next-verb" class="next-btn">
+                  <span>Next Verb</span>
+                  <span>→</span>
+                </button>
+              `}
             </div>
           </div>
 
           <!-- Quick restart -->
-          <div class="text-center mt-6">
-            <button
-              id="reset-exercise"
-              class="text-gray-600 hover:text-gray-800 transition-colors"
-            >
-               Reset Exercise
+          <div class="reset-section">
+            <button id="reset-exercise" class="reset-btn">
+              <span>🔄</span>
+              <span>Reset Exercise</span>
             </button>
           </div>
         </div>
@@ -277,18 +243,25 @@ class VerbTrainer {
     const app = document.getElementById('app');
 
     // Remove previous listeners
-    app.removeEventListener('click', this.handleClick);
-    app.removeEventListener('keypress', this.handleKeypress);
-    app.removeEventListener('input', this.handleInput);
+    if (this.boundHandleClick) {
+      app.removeEventListener('click', this.boundHandleClick);
+    }
+    if (this.boundHandleKeydown) {
+      app.removeEventListener('keydown', this.boundHandleKeydown);
+    }
+    if (this.boundHandleInput) {
+      app.removeEventListener('input', this.boundHandleInput);
+    }
+
+    // Bind functions to preserve 'this' context
+    this.boundHandleClick = this.handleClick.bind(this);
+    this.boundHandleKeydown = this.handleKeydown.bind(this);
+    this.boundHandleInput = this.handleInput.bind(this);
 
     // Add new listeners
-    this.handleClick = this.handleClick.bind(this);
-    this.handleKeypress = this.handleKeypress.bind(this);
-    this.handleInput = this.handleInput.bind(this);
-
-    app.addEventListener('click', this.handleClick);
-    app.addEventListener('keypress', this.handleKeypress);
-    app.addEventListener('input', this.handleInput);
+    app.addEventListener('click', this.boundHandleClick);
+    app.addEventListener('keydown', this.boundHandleKeydown);
+    app.addEventListener('input', this.boundHandleInput);
   }
 
   handleClick(e) {
@@ -329,9 +302,11 @@ class VerbTrainer {
     // Check answer
     if (target.id === 'check-answer') {
       const input = document.getElementById('verb-input');
-      this.checkAnswer(input.value);
-      this.render();
-      this.attachEventListeners();
+      if (input && input.value.trim()) {
+        this.checkAnswer(input.value);
+        this.render();
+        this.attachEventListeners();
+      }
     }
 
     // Show answer
@@ -369,31 +344,37 @@ Verbs Practiced: ${stats.verbsPracticed}`);
     }
   }
 
-  handleKeypress(e) {
-  if (e.key === 'Enter' && this.currentMode === 'practice') {
-    e.preventDefault(); // Prevent form submission
-    
-    if (!this.currentExercise.showAnswer) {
-      // Enter submits the answer
-      const input = document.getElementById('verb-input');
-      if (input && input.value.trim()) {
-        this.checkAnswer(input.value);
+  handleKeydown(e) {
+    if (e.key === 'Enter' && this.currentMode === 'practice') {
+      e.preventDefault();
+      
+      if (!this.currentExercise.showAnswer) {
+        // Enter submits the answer
+        const input = document.getElementById('verb-input');
+        if (input && input.value.trim()) {
+          this.checkAnswer(input.value);
+          this.render();
+          this.attachEventListeners();
+        }
+      } else {
+        // Enter goes to next verb when answer is shown
+        this.generateNewExercise();
         this.render();
         this.attachEventListeners();
+        setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
       }
-    } else {
-      // Enter goes to next verb when answer is shown
-      this.generateNewExercise();
-      this.render();
-      this.attachEventListeners();
-      setTimeout(() => document.getElementById('verb-input')?.focus(), 100);
     }
   }
-}
 
   handleInput(e) {
     if (e.target.id === 'verb-input' && this.currentExercise) {
       this.currentExercise.userInput = e.target.value;
+      
+      // Update button state
+      const checkBtn = document.getElementById('check-answer');
+      if (checkBtn) {
+        checkBtn.disabled = !e.target.value.trim();
+      }
     }
   }
 }
