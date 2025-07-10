@@ -159,6 +159,61 @@ export const verbDatabase = {
         subjunctive2: { ich: ["ich führte"], du: ["du führtest"], er: ["er führte", "sie führte", "es führte"], wir: ["wir führten"], ihr: ["ihr führtet"], sie: ["sie führten", "Sie führten"] }
       }
     }
+    {
+  infinitive: "leben", english: "to live", frequency: 34, category: "regular", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich lebe"], du: ["du lebst"], er: ["er lebt", "sie lebt", "es lebt"], wir: ["wir leben"], ihr: ["ihr lebt"], sie: ["sie leben", "Sie leben"] },
+    perfect: { ich: ["ich habe gelebt"], du: ["du hast gelebt"], er: ["er hat gelebt", "sie hat gelebt", "es hat gelebt"], wir: ["wir haben gelebt"], ihr: ["ihr habt gelebt"], sie: ["sie haben gelebt", "Sie haben gelebt"] },
+    preterite: { ich: ["ich lebte"], du: ["du lebtest"], er: ["er lebte", "sie lebte", "es lebte"], wir: ["wir lebten"], ihr: ["ihr lebtet"], sie: ["sie lebten", "Sie lebten"] },
+    imperative: { du: ["leb", "lebe"], ihr: ["lebt"], Sie: ["leben Sie"] },
+    subjunctive1: { ich: ["ich lebe"], du: ["du lebest"], er: ["er lebe", "sie lebe", "es lebe"], wir: ["wir leben"], ihr: ["ihr lebet"], sie: ["sie leben", "Sie leben"] },
+    subjunctive2: { ich: ["ich lebte"], du: ["du lebtest"], er: ["er lebte", "sie lebte", "es lebte"], wir: ["wir lebten"], ihr: ["ihr lebtet"], sie: ["sie lebten", "Sie lebten"] }
+  }
+},
+{
+  infinitive: "meinen", english: "to mean, to think", frequency: 37, category: "regular", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich meine"], du: ["du meinst"], er: ["er meint", "sie meint", "es meint"], wir: ["wir meinen"], ihr: ["ihr meint"], sie: ["sie meinen", "Sie meinen"] },
+    perfect: { ich: ["ich habe gemeint"], du: ["du hast gemeint"], er: ["er hat gemeint", "sie hat gemeint", "es hat gemeint"], wir: ["wir haben gemeint"], ihr: ["ihr habt gemeint"], sie: ["sie haben gemeint", "Sie haben gemeint"] },
+    preterite: { ich: ["ich meinte"], du: ["du meintest"], er: ["er meinte", "sie meinte", "es meinte"], wir: ["wir meinten"], ihr: ["ihr meintet"], sie: ["sie meinten", "Sie meinten"] },
+    imperative: { du: ["mein", "meine"], ihr: ["meint"], Sie: ["meinen Sie"] },
+    subjunctive1: { ich: ["ich meine"], du: ["du meinest"], er: ["er meine", "sie meine", "es meine"], wir: ["wir meinen"], ihr: ["ihr meinet"], sie: ["sie meinen", "Sie meinen"] },
+    subjunctive2: { ich: ["ich meinte"], du: ["du meintest"], er: ["er meinte", "sie meinte", "es meinte"], wir: ["wir meinten"], ihr: ["ihr meintet"], sie: ["sie meinten", "Sie meinten"] }
+  }
+},
+{
+  infinitive: "fragen", english: "to ask", frequency: 38, category: "regular", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich frage"], du: ["du fragst"], er: ["er fragt", "sie fragt", "es fragt"], wir: ["wir fragen"], ihr: ["ihr fragt"], sie: ["sie fragen", "Sie fragen"] },
+    perfect: { ich: ["ich habe gefragt"], du: ["du hast gefragt"], er: ["er hat gefragt", "sie hat gefragt", "es hat gefragt"], wir: ["wir haben gefragt"], ihr: ["ihr habt gefragt"], sie: ["sie haben gefragt", "Sie haben gefragt"] },
+    preterite: { ich: ["ich fragte"], du: ["du fragtest"], er: ["er fragte", "sie fragte", "es fragte"], wir: ["wir fragten"], ihr: ["ihr fragtet"], sie: ["sie fragten", "Sie fragten"] },
+    imperative: { du: ["frag", "frage"], ihr: ["fragt"], Sie: ["fragen Sie"] },
+    subjunctive1: { ich: ["ich frage"], du: ["du fragest"], er: ["er frage", "sie frage", "es frage"], wir: ["wir fragen"], ihr: ["ihr fraget"], sie: ["sie fragen", "Sie fragen"] },
+    subjunctive2: { ich: ["ich fragte"], du: ["du fragtest"], er: ["er fragte", "sie fragte", "es fragte"], wir: ["wir fragten"], ihr: ["ihr fragtet"], sie: ["sie fragten", "Sie fragten"] }
+  }
+},
+{
+  infinitive: "arbeiten", english: "to work", frequency: 41, category: "regular", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich arbeite"], du: ["du arbeitest"], er: ["er arbeitet", "sie arbeitet", "es arbeitet"], wir: ["wir arbeiten"], ihr: ["ihr arbeitet"], sie: ["sie arbeiten", "Sie arbeiten"] },
+    perfect: { ich: ["ich habe gearbeitet"], du: ["du hast gearbeitet"], er: ["er hat gearbeitet", "sie hat gearbeitet", "es hat gearbeitet"], wir: ["wir haben gearbeitet"], ihr: ["ihr habt gearbeitet"], sie: ["sie haben gearbeitet", "Sie haben gearbeitet"] },
+    preterite: { ich: ["ich arbeitete"], du: ["du arbeitetest"], er: ["er arbeitete", "sie arbeitete", "es arbeitete"], wir: ["wir arbeiteten"], ihr: ["ihr arbeitetet"], sie: ["sie arbeiteten", "Sie arbeiteten"] },
+    imperative: { du: ["arbeit", "arbeite"], ihr: ["arbeitet"], Sie: ["arbeiten Sie"] },
+    subjunctive1: { ich: ["ich arbeite"], du: ["du arbeitest"], er: ["er arbeite", "sie arbeite", "es arbeite"], wir: ["wir arbeiten"], ihr: ["ihr arbeitet"], sie: ["sie arbeiten", "Sie arbeiten"] },
+    subjunctive2: { ich: ["ich arbeitete"], du: ["du arbeitetest"], er: ["er arbeitete", "sie arbeitete", "es arbeitete"], wir: ["wir arbeiteten"], ihr: ["ihr arbeitetet"], sie: ["sie arbeiteten", "Sie arbeiteten"] }
+  }
+},
+{
+  infinitive: "lernen", english: "to learn", frequency: 44, category: "regular", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich lerne"], du: ["du lernst"], er: ["er lernt", "sie lernt", "es lernt"], wir: ["wir lernen"], ihr: ["ihr lernt"], sie: ["sie lernen", "Sie lernen"] },
+    perfect: { ich: ["ich habe gelernt"], du: ["du hast gelernt"], er: ["er hat gelernt", "sie hat gelernt", "es hat gelernt"], wir: ["wir haben gelernt"], ihr: ["ihr habt gelernt"], sie: ["sie haben gelernt", "Sie haben gelernt"] },
+    preterite: { ich: ["ich lernte"], du: ["du lerntest"], er: ["er lernte", "sie lernte", "es lernte"], wir: ["wir lernten"], ihr: ["ihr lerntet"], sie: ["sie lernten", "Sie lernten"] },
+    imperative: { du: ["lern", "lerne"], ihr: ["lernt"], Sie: ["lernen Sie"] },
+    subjunctive1: { ich: ["ich lerne"], du: ["du lernest"], er: ["er lerne", "sie lerne", "es lerne"], wir: ["wir lernen"], ihr: ["ihr lernet"], sie: ["sie lernen", "Sie lernen"] },
+    subjunctive2: { ich: ["ich lernte"], du: ["du lerntest"], er: ["er lernte", "sie lernte", "es lernte"], wir: ["wir lernten"], ihr: ["ihr lerntet"], sie: ["sie lernten", "Sie lernten"] }
+  }
+},
   ],
 
   // STRONG VERBS (40 verbs) - Most important irregular verbs
@@ -218,6 +273,61 @@ export const verbDatabase = {
         subjunctive2: { ich: ["ich sähe"], du: ["du sähest"], er: ["er sähe", "sie sähe", "es sähe"], wir: ["wir sähen"], ihr: ["ihr sähet"], sie: ["sie sähen", "Sie sähen"] }
       }
     }
+    {
+  infinitive: "lassen", english: "to let, to leave", frequency: 15, category: "strong", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich lasse"], du: ["du lässt"], er: ["er lässt", "sie lässt", "es lässt"], wir: ["wir lassen"], ihr: ["ihr lasst"], sie: ["sie lassen", "Sie lassen"] },
+    perfect: { ich: ["ich habe gelassen"], du: ["du hast gelassen"], er: ["er hat gelassen", "sie hat gelassen", "es hat gelassen"], wir: ["wir haben gelassen"], ihr: ["ihr habt gelassen"], sie: ["sie haben gelassen", "Sie haben gelassen"] },
+    preterite: { ich: ["ich ließ"], du: ["du ließt"], er: ["er ließ", "sie ließ", "es ließ"], wir: ["wir ließen"], ihr: ["ihr ließt"], sie: ["sie ließen", "Sie ließen"] },
+    imperative: { du: ["lass"], ihr: ["lasst"], Sie: ["lassen Sie"] },
+    subjunctive1: { ich: ["ich lasse"], du: ["du lassest"], er: ["er lasse", "sie lasse", "es lasse"], wir: ["wir lassen"], ihr: ["ihr lasset"], sie: ["sie lassen", "Sie lassen"] },
+    subjunctive2: { ich: ["ich ließe"], du: ["du ließest"], er: ["er ließe", "sie ließe", "es ließe"], wir: ["wir ließen"], ihr: ["ihr ließet"], sie: ["sie ließen", "Sie ließen"] }
+  }
+},
+{
+  infinitive: "stehen", english: "to stand", frequency: 16, category: "strong", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich stehe"], du: ["du stehst"], er: ["er steht", "sie steht", "es steht"], wir: ["wir stehen"], ihr: ["ihr steht"], sie: ["sie stehen", "Sie stehen"] },
+    perfect: { ich: ["ich habe gestanden"], du: ["du hast gestanden"], er: ["er hat gestanden", "sie hat gestanden", "es hat gestanden"], wir: ["wir haben gestanden"], ihr: ["ihr habt gestanden"], sie: ["sie haben gestanden", "Sie haben gestanden"] },
+    preterite: { ich: ["ich stand"], du: ["du standst", "du standest"], er: ["er stand", "sie stand", "es stand"], wir: ["wir standen"], ihr: ["ihr standet"], sie: ["sie standen", "Sie standen"] },
+    imperative: { du: ["steh", "stehe"], ihr: ["steht"], Sie: ["stehen Sie"] },
+    subjunctive1: { ich: ["ich stehe"], du: ["du stehest"], er: ["er stehe", "sie stehe", "es stehe"], wir: ["wir stehen"], ihr: ["ihr stehet"], sie: ["sie stehen", "Sie stehen"] },
+    subjunctive2: { ich: ["ich stände", "ich stünde"], du: ["du ständest", "du stündest"], er: ["er stände", "sie stände", "es stände", "er stünde", "sie stünde", "es stünde"], wir: ["wir ständen", "wir stünden"], ihr: ["ihr ständet", "ihr stündet"], sie: ["sie ständen", "Sie ständen", "sie stünden", "Sie stünden"] }
+  }
+},
+{
+  infinitive: "finden", english: "to find", frequency: 17, category: "strong", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich finde"], du: ["du findest"], er: ["er findet", "sie findet", "es findet"], wir: ["wir finden"], ihr: ["ihr findet"], sie: ["sie finden", "Sie finden"] },
+    perfect: { ich: ["ich habe gefunden"], du: ["du hast gefunden"], er: ["er hat gefunden", "sie hat gefunden", "es hat gefunden"], wir: ["wir haben gefunden"], ihr: ["ihr habt gefunden"], sie: ["sie haben gefunden", "Sie haben gefunden"] },
+    preterite: { ich: ["ich fand"], du: ["du fandst"], er: ["er fand", "sie fand", "es fand"], wir: ["wir fanden"], ihr: ["ihr fandet"], sie: ["sie fanden", "Sie fanden"] },
+    imperative: { du: ["find", "finde"], ihr: ["findet"], Sie: ["finden Sie"] },
+    subjunctive1: { ich: ["ich finde"], du: ["du findest"], er: ["er finde", "sie finde", "es finde"], wir: ["wir finden"], ihr: ["ihr findet"], sie: ["sie finden", "Sie finden"] },
+    subjunctive2: { ich: ["ich fände"], du: ["du fändest"], er: ["er fände", "sie fände", "es fände"], wir: ["wir fänden"], ihr: ["ihr fändet"], sie: ["sie fänden", "Sie fänden"] }
+  }
+},
+{
+  infinitive: "bleiben", english: "to stay, to remain", frequency: 18, category: "strong", auxiliary: "sein",
+  conjugations: {
+    present: { ich: ["ich bleibe"], du: ["du bleibst"], er: ["er bleibt", "sie bleibt", "es bleibt"], wir: ["wir bleiben"], ihr: ["ihr bleibt"], sie: ["sie bleiben", "Sie bleiben"] },
+    perfect: { ich: ["ich bin geblieben"], du: ["du bist geblieben"], er: ["er ist geblieben", "sie ist geblieben", "es ist geblieben"], wir: ["wir sind geblieben"], ihr: ["ihr seid geblieben"], sie: ["sie sind geblieben", "Sie sind geblieben"] },
+    preterite: { ich: ["ich blieb"], du: ["du bliebst"], er: ["er blieb", "sie blieb", "es blieb"], wir: ["wir blieben"], ihr: ["ihr bliebt"], sie: ["sie blieben", "Sie blieben"] },
+    imperative: { du: ["bleib", "bleibe"], ihr: ["bleibt"], Sie: ["bleiben Sie"] },
+    subjunctive1: { ich: ["ich bleibe"], du: ["du bleibest"], er: ["er bleibe", "sie bleibe", "es bleibe"], wir: ["wir bleiben"], ihr: ["ihr bleibet"], sie: ["sie bleiben", "Sie bleiben"] },
+    subjunctive2: { ich: ["ich bliebe"], du: ["du bliebest"], er: ["er bliebe", "sie bliebe", "es bliebe"], wir: ["wir blieben"], ihr: ["ihr bliebet"], sie: ["sie blieben", "Sie blieben"] }
+  }
+},
+{
+  infinitive: "nehmen", english: "to take", frequency: 22, category: "strong", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich nehme"], du: ["du nimmst"], er: ["er nimmt", "sie nimmt", "es nimmt"], wir: ["wir nehmen"], ihr: ["ihr nehmt"], sie: ["sie nehmen", "Sie nehmen"] },
+    perfect: { ich: ["ich habe genommen"], du: ["du hast genommen"], er: ["er hat genommen", "sie hat genommen", "es hat genommen"], wir: ["wir haben genommen"], ihr: ["ihr habt genommen"], sie: ["sie haben genommen", "Sie haben genommen"] },
+    preterite: { ich: ["ich nahm"], du: ["du nahmst"], er: ["er nahm", "sie nahm", "es nahm"], wir: ["wir nahmen"], ihr: ["ihr nahmt"], sie: ["sie nahmen", "Sie nahmen"] },
+    imperative: { du: ["nimm"], ihr: ["nehmt"], Sie: ["nehmen Sie"] },
+    subjunctive1: { ich: ["ich nehme"], du: ["du nehmest"], er: ["er nehme", "sie nehme", "es nehme"], wir: ["wir nehmen"], ihr: ["ihr nehmet"], sie: ["sie nehmen", "Sie nehmen"] },
+    subjunctive2: { ich: ["ich nähme"], du: ["du nähmest"], er: ["er nähme", "sie nähme", "es nähme"], wir: ["wir nähmen"], ihr: ["ihr nähmet"], sie: ["sie nähmen", "Sie nähmen"] }
+  }
+},
   ],
 
   // SEPARABLE VERBS (15 verbs)
@@ -244,6 +354,39 @@ export const verbDatabase = {
         subjunctive2: { ich: ["ich käme an"], du: ["du kämest an"], er: ["er käme an", "sie käme an", "es käme an"], wir: ["wir kämen an"], ihr: ["ihr kämet an"], sie: ["sie kämen an", "Sie kämen an"] }
       }
     }
+    {
+  infinitive: "ausgehen", english: "to go out", frequency: 45, category: "separable", auxiliary: "sein",
+  conjugations: {
+    present: { ich: ["ich gehe aus"], du: ["du gehst aus"], er: ["er geht aus", "sie geht aus", "es geht aus"], wir: ["wir gehen aus"], ihr: ["ihr geht aus"], sie: ["sie gehen aus", "Sie gehen aus"] },
+    perfect: { ich: ["ich bin ausgegangen"], du: ["du bist ausgegangen"], er: ["er ist ausgegangen", "sie ist ausgegangen", "es ist ausgegangen"], wir: ["wir sind ausgegangen"], ihr: ["ihr seid ausgegangen"], sie: ["sie sind ausgegangen", "Sie sind ausgegangen"] },
+    preterite: { ich: ["ich ging aus"], du: ["du gingst aus"], er: ["er ging aus", "sie ging aus", "es ging aus"], wir: ["wir gingen aus"], ihr: ["ihr gingt aus"], sie: ["sie gingen aus", "Sie gingen aus"] },
+    imperative: { du: ["geh aus", "gehe aus"], ihr: ["geht aus"], Sie: ["gehen Sie aus"] },
+    subjunctive1: { ich: ["ich gehe aus"], du: ["du gehest aus"], er: ["er gehe aus", "sie gehe aus", "es gehe aus"], wir: ["wir gehen aus"], ihr: ["ihr gehet aus"], sie: ["sie gehen aus", "Sie gehen aus"] },
+    subjunctive2: { ich: ["ich ginge aus"], du: ["du gingest aus"], er: ["er ginge aus", "sie ginge aus", "es ginge aus"], wir: ["wir gingen aus"], ihr: ["ihr ginget aus"], sie: ["sie gingen aus", "Sie gingen aus"] }
+  }
+},
+{
+  infinitive: "vorstellen", english: "to introduce, to imagine", frequency: 67, category: "separable", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich stelle vor"], du: ["du stellst vor"], er: ["er stellt vor", "sie stellt vor", "es stellt vor"], wir: ["wir stellen vor"], ihr: ["ihr stellt vor"], sie: ["sie stellen vor", "Sie stellen vor"] },
+    perfect: { ich: ["ich habe vorgestellt"], du: ["du hast vorgestellt"], er: ["er hat vorgestellt", "sie hat vorgestellt", "es hat vorgestellt"], wir: ["wir haben vorgestellt"], ihr: ["ihr habt vorgestellt"], sie: ["sie haben vorgestellt", "Sie haben vorgestellt"] },
+    preterite: { ich: ["ich stellte vor"], du: ["du stelltest vor"], er: ["er stellte vor", "sie stellte vor", "es stellte vor"], wir: ["wir stellten vor"], ihr: ["ihr stelltet vor"], sie: ["sie stellten vor", "Sie stellten vor"] },
+    imperative: { du: ["stell vor", "stelle vor"], ihr: ["stellt vor"], Sie: ["stellen Sie vor"] },
+    subjunctive1: { ich: ["ich stelle vor"], du: ["du stellest vor"], er: ["er stelle vor", "sie stelle vor", "es stelle vor"], wir: ["wir stellen vor"], ihr: ["ihr stellet vor"], sie: ["sie stellen vor", "Sie stellen vor"] },
+    subjunctive2: { ich: ["ich stellte vor"], du: ["du stelltest vor"], er: ["er stellte vor", "sie stellte vor", "es stellte vor"], wir: ["wir stellten vor"], ihr: ["ihr stelltet vor"], sie: ["sie stellten vor", "Sie stellten vor"] }
+  }
+},
+{
+  infinitive: "einsteigen", english: "to get in, to board", frequency: 55, category: "separable", auxiliary: "sein",
+  conjugations: {
+    present: { ich: ["ich steige ein"], du: ["du steigst ein"], er: ["er steigt ein", "sie steigt ein", "es steigt ein"], wir: ["wir steigen ein"], ihr: ["ihr steigt ein"], sie: ["sie steigen ein", "Sie steigen ein"] },
+    perfect: { ich: ["ich bin eingestiegen"], du: ["du bist eingestiegen"], er: ["er ist eingestiegen", "sie ist eingestiegen", "es ist eingestiegen"], wir: ["wir sind eingestiegen"], ihr: ["ihr seid eingestiegen"], sie: ["sie sind eingestiegen", "Sie sind eingestiegen"] },
+    preterite: { ich: ["ich stieg ein"], du: ["du stiegst ein"], er: ["er stieg ein", "sie stieg ein", "es stieg ein"], wir: ["wir stiegen ein"], ihr: ["ihr stiegt ein"], sie: ["sie stiegen ein", "Sie stiegen ein"] },
+    imperative: { du: ["steig ein", "steige ein"], ihr: ["steigt ein"], Sie: ["steigen Sie ein"] },
+    subjunctive1: { ich: ["ich steige ein"], du: ["du steigest ein"], er: ["er steige ein", "sie steige ein", "es steige ein"], wir: ["wir steigen ein"], ihr: ["ihr steiget ein"], sie: ["sie steigen ein", "Sie steigen ein"] },
+    subjunctive2: { ich: ["ich stiege ein"], du: ["du stiegest ein"], er: ["er stiege ein", "sie stiege ein", "es stiege ein"], wir: ["wir stiegen ein"], ihr: ["ihr stieget ein"], sie: ["sie stiegen ein", "Sie stiegen ein"] }
+  }
+},
   ],
 
   // INSEPARABLE VERBS (8 verbs)
@@ -270,6 +413,39 @@ export const verbDatabase = {
         subjunctive2: { ich: ["ich bekäme"], du: ["du bekämest"], er: ["er bekäme", "sie bekäme", "es bekäme"], wir: ["wir bekämen"], ihr: ["ihr bekämet"], sie: ["sie bekämen", "Sie bekämen"] }
       }
     }
+    {
+  infinitive: "beginnen", english: "to begin", frequency: 49, category: "inseparable", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich beginne"], du: ["du beginnst"], er: ["er beginnt", "sie beginnt", "es beginnt"], wir: ["wir beginnen"], ihr: ["ihr beginnt"], sie: ["sie beginnen", "Sie beginnen"] },
+    perfect: { ich: ["ich habe begonnen"], du: ["du hast begonnen"], er: ["er hat begonnen", "sie hat begonnen", "es hat begonnen"], wir: ["wir haben begonnen"], ihr: ["ihr habt begonnen"], sie: ["sie haben begonnen", "Sie haben begonnen"] },
+    preterite: { ich: ["ich begann"], du: ["du begannst"], er: ["er begann", "sie begann", "es begann"], wir: ["wir begannen"], ihr: ["ihr begannt"], sie: ["sie begannen", "Sie begannen"] },
+    imperative: { du: ["beginn", "beginne"], ihr: ["beginnt"], Sie: ["beginnen Sie"] },
+    subjunctive1: { ich: ["ich beginne"], du: ["du beginnest"], er: ["er beginne", "sie beginne", "es beginne"], wir: ["wir beginnen"], ihr: ["ihr beginnet"], sie: ["sie beginnen", "Sie beginnen"] },
+    subjunctive2: { ich: ["ich begänne", "ich begönne"], du: ["du begännest", "du begönnest"], er: ["er begänne", "sie begänne", "es begänne", "er begönne", "sie begönne", "es begönne"], wir: ["wir begännen", "wir begönnen"], ihr: ["ihr begännet", "ihr begönnet"], sie: ["sie begännen", "Sie begännen", "sie begönnen", "Sie begönnen"] }
+  }
+},
+{
+  infinitive: "erzählen", english: "to tell, to narrate", frequency: 50, category: "inseparable", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich erzähle"], du: ["du erzählst"], er: ["er erzählt", "sie erzählt", "es erzählt"], wir: ["wir erzählen"], ihr: ["ihr erzählt"], sie: ["sie erzählen", "Sie erzählen"] },
+    perfect: { ich: ["ich habe erzählt"], du: ["du hast erzählt"], er: ["er hat erzählt", "sie hat erzählt", "es hat erzählt"], wir: ["wir haben erzählt"], ihr: ["ihr habt erzählt"], sie: ["sie haben erzählt", "Sie haben erzählt"] },
+    preterite: { ich: ["ich erzählte"], du: ["du erzähltest"], er: ["er erzählte", "sie erzählte", "es erzählte"], wir: ["wir erzählten"], ihr: ["ihr erzähltet"], sie: ["sie erzählten", "Sie erzählten"] },
+    imperative: { du: ["erzähl", "erzähle"], ihr: ["erzählt"], Sie: ["erzählen Sie"] },
+    subjunctive1: { ich: ["ich erzähle"], du: ["du erzählest"], er: ["er erzähle", "sie erzähle", "es erzähle"], wir: ["wir erzählen"], ihr: ["ihr erzählet"], sie: ["sie erzählen", "Sie erzählen"] },
+    subjunctive2: { ich: ["ich erzählte"], du: ["du erzähltest"], er: ["er erzählte", "sie erzählte", "es erzählte"], wir: ["wir erzählten"], ihr: ["ihr erzähltet"], sie: ["sie erzählten", "Sie erzählten"] }
+  }
+},
+{
+  infinitive: "versuchen", english: "to try", frequency: 51, category: "inseparable", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich versuche"], du: ["du versuchst"], er: ["er versucht", "sie versucht", "es versucht"], wir: ["wir versuchen"], ihr: ["ihr versucht"], sie: ["sie versuchen", "Sie versuchen"] },
+    perfect: { ich: ["ich habe versucht"], du: ["du hast versucht"], er: ["er hat versucht", "sie hat versucht", "es hat versucht"], wir: ["wir haben versucht"], ihr: ["ihr habt versucht"], sie: ["sie haben versucht", "Sie haben versucht"] },
+    preterite: { ich: ["ich versuchte"], du: ["du versuchtest"], er: ["er versuchte", "sie versuchte", "es versuchte"], wir: ["wir versuchten"], ihr: ["ihr versuchtet"], sie: ["sie versuchten", "Sie versuchten"] },
+    imperative: { du: ["versuch", "versuche"], ihr: ["versucht"], Sie: ["versuchen Sie"] },
+    subjunctive1: { ich: ["ich versuche"], du: ["du versuchest"], er: ["er versuche", "sie versuche", "es versuche"], wir: ["wir versuchen"], ihr: ["ihr versuchet"], sie: ["sie versuchen", "Sie versuchen"] },
+    subjunctive2: { ich: ["ich versuchte"], du: ["du versuchtest"], er: ["er versuchte", "sie versuchte", "es versuchte"], wir: ["wir versuchten"], ihr: ["ihr versuchtet"], sie: ["sie versuchten", "Sie versuchten"] }
+  }
+},
   ],
 
   // -IEREN VERBS (3 verbs)
@@ -307,6 +483,17 @@ export const verbDatabase = {
         subjunctive2: { ich: ["ich passierte"], du: ["du passiertest"], er: ["er passierte", "sie passierte", "es passierte"], wir: ["wir passierten"], ihr: ["ihr passiertet"], sie: ["sie passierten", "Sie passierten"] }
       }
     }
+    {
+  infinitive: "interessieren", english: "to interest", frequency: 75, category: "ieren", auxiliary: "haben",
+  conjugations: {
+    present: { ich: ["ich interessiere"], du: ["du interessierst"], er: ["er interessiert", "sie interessiert", "es interessiert"], wir: ["wir interessieren"], ihr: ["ihr interessiert"], sie: ["sie interessieren", "Sie interessieren"] },
+    perfect: { ich: ["ich habe interessiert"], du: ["du hast interessiert"], er: ["er hat interessiert", "sie hat interessiert", "es hat interessiert"], wir: ["wir haben interessiert"], ihr: ["ihr habt interessiert"], sie: ["sie haben interessiert", "Sie haben interessiert"] },
+    preterite: { ich: ["ich interessierte"], du: ["du interessiertest"], er: ["er interessierte", "sie interessierte", "es interessierte"], wir: ["wir interessierten"], ihr: ["ihr interessiertet"], sie: ["sie interessierten", "Sie interessierten"] },
+    imperative: { du: ["interessier", "interessiere"], ihr: ["interessiert"], Sie: ["interessieren Sie"] },
+    subjunctive1: { ich: ["ich interessiere"], du: ["du interessierest"], er: ["er interessiere", "sie interessiere", "es interessiere"], wir: ["wir interessieren"], ihr: ["ihr interessieret"], sie: ["sie interessieren", "Sie interessieren"] },
+    subjunctive2: { ich: ["ich interessierte"], du: ["du interessiertest"], er: ["er interessierte", "sie interessierte", "es interessierte"], wir: ["wir interessierten"], ihr: ["ihr interessiertet"], sie: ["sie interessierten", "Sie interessierten"] }
+  }
+},
   ]
 };
 
@@ -338,6 +525,23 @@ export const verbsByFrequency = [
   { infinitive: "studieren", frequency: 65, category: "ieren" },
   { infinitive: "funktionieren", frequency: 70, category: "ieren" },
   { infinitive: "passieren", frequency: 80, category: "ieren" }
+  { infinitive: "lassen", frequency: 15, category: "strong" },
+{ infinitive: "stehen", frequency: 16, category: "strong" },
+{ infinitive: "finden", frequency: 17, category: "strong" },
+{ infinitive: "bleiben", frequency: 18, category: "strong" },
+{ infinitive: "nehmen", frequency: 22, category: "strong" },
+{ infinitive: "leben", frequency: 34, category: "regular" },
+{ infinitive: "meinen", frequency: 37, category: "regular" },
+{ infinitive: "fragen", frequency: 38, category: "regular" },
+{ infinitive: "arbeiten", frequency: 41, category: "regular" },
+{ infinitive: "lernen", frequency: 44, category: "regular" },
+{ infinitive: "ausgehen", frequency: 45, category: "separable" },
+{ infinitive: "beginnen", frequency: 49, category: "inseparable" },
+{ infinitive: "erzählen", frequency: 50, category: "inseparable" },
+{ infinitive: "versuchen", frequency: 51, category: "inseparable" },
+{ infinitive: "einsteigen", frequency: 55, category: "separable" },
+{ infinitive: "vorstellen", frequency: 67, category: "separable" },
+{ infinitive: "interessieren", frequency: 75, category: "ieren" }
 ];
 
 export default verbDatabase;
